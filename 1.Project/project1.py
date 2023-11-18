@@ -16,7 +16,7 @@ def main():
 
     with open(sys.argv[2], "w") as csvfile2:
         after_writer = csv.DictWriter(csvfile2, fieldnames =["First_name", "Last_name", "Email"])
-        after_writer.writerow({"First_name": "Imie Klienta", "Last_name": "Nazwisko Klienta", "Email": "Email Klienta"})
+        after_writer.writerow({"First_name": "Client first name", "Last_name": "Client second name ", "Email": "Client email"})
         for row in after:
             after_writer.writerow({"First_name": row["first_name"], "Last_name": row["last_name"], "Email": row["email"]})
 
