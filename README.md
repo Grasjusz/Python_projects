@@ -1,3 +1,3 @@
 Python_projects
 
-Place for my simple Python projects
+Place for my Python projects
