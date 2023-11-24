@@ -3,6 +3,7 @@ import sys
 
 def main():
 
+    score = []
     word_list = []
 
     while True:
@@ -20,19 +21,24 @@ def main():
             break
 
 #Shuffling and printing pair of the words to print
-    for pair_word in word_list:
-        random.shuffle(word_list)
-        eng_word = pair_word["eng"]
-        pl_word = pair_word["pl"]
-        answer = input(f"Word translation for {eng_word} is: ").lower()
-        if answer == pl_word:
-            pass
-        elif answer == "exit program":
-            exit_program()
-        else:
-            print(f"Correct word: {pl_word}")
+    while word_list:
+        for pair_word in word_list:
+            random.shuffle(word_list)
+            eng_word = pair_word["eng"]
+            pl_word = pair_word["pl"]
+            answer = input(f"Word translation for {eng_word} is: ").lower()
+            if answer == pl_word:
+                word_list.remove(pair_word)
+            elif answer == "exit program":
+                exit_program()
+            else:
+                print(f"Correct word: {pl_word}")
+    else:
+        print("All words translated, congratulations!")
+        exit_program()
 
-#Checking and choosing proper file with words
+
+#Checking and choosing proper file with words and translations
 def check_lvl(level):
     if level == "l1":
         file_level = "level1.csv"

@@ -15,12 +15,12 @@ def main():
         sys.exit(f"Could not read {sys.argv[1]}")
 
     with open(sys.argv[2], "w") as csvfile2:
-        after_writer = csv.DictWriter(csvfile2, fieldnames =["First_name", "Last_name", "Email"])
+        after_writer = csv.DictWriter(csvfile2, fieldnames = ["First_name", "Last_name", "Email"])
         after_writer.writerow({"First_name": "Client first name", "Last_name": "Client second name ", "Email": "Client email"})
         for row in after:
             after_writer.writerow({"First_name": row["first_name"], "Last_name": row["last_name"], "Email": row["email"]})
 
-
+#Check for erros in arguments
 def check_sys_arg():
     if len(sys.argv) < 3:
         sys.exit("Too few command-line arguments")
