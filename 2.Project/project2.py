@@ -2,71 +2,93 @@
 import random
 import sys
 
+
+language_list = ["angielski", "niemiecki", "polish", "german", "polnisch", "englisch"]
+word_list = []
+typed_lang = []
 def main():
     """Main program"""
-
-    word_list = []
-    score = 0
     while True:
         language = input("Choose your language: polski, english or deutsch: ").lower()
-        level = input(check_language(language)).lower()
+        learn_lang = input(check_language(language)).lower()
         try:
-            with open(check_lvl(level), "r", encoding="utf-8") as file_level:
+            with open(chosen_lang(learn_lang)[0], "r", encoding="utf-8") as file_level:
                 for line in file_level:
                     line = line.lower()
-                    eng, pl = line.rstrip().split(",")
-                    word_list.append({"eng":eng, "pl":pl})
+                    pl, eng, de = line.strip().split(",")
+                    word_list.append({"pl":pl, "eng":eng, "de":de})
         except (NameError, TypeError):
             print("You have to choose between 3 levels, type: l1, l2 or l3")
             continue
         else:
             break
 
-#Shuffling and printing pair of words to print, scoring.
-    while word_list:
-        total_points = len(word_list)
-        for pair_word in word_list.copy():
-            random.shuffle(word_list)
-            eng_word = pair_word["eng"]
-            pl_word = pair_word["pl"]
-            answer = input(f"Word translation for {eng_word} is: ").lower()
-            if answer == pl_word:
-                word_list.remove(pair_word)
-                score += 1
-                print(f"You actual score is {score} of total {total_points} points")
-            elif answer == "exit program":
-                exit_program()
-            else:
-                print(f"Correct word: {pl_word}")
-    return print("All words translated, congratulations!"), exit_program()
-
+    pol_lang()
 
 def check_language(language):
-    if language == "polish":
-        language_level = "Który poziom byś wypróbował? (wpisz: 'l1' (łatwy), 'l2' (średni) lub 'l3' (trudny)) wpisz 'exit program', aby wyjść: "
+    """check chosen language and run proper"""
+    if language == "polski":
+        language_level = "Jakiego języka chcesz się uczyć? angielski lub niemiecki?: "
         return language_level
     if language == "english":
-        language_level = "Which level would you try? (type: 'l1'(easy), 'l2'(medium) or 'l3'(hard)) type 'exit program' to exit: "
+        language_level = "Which language would you like to learn? polish or german?: "
         return language_level
-    if language == "german":
-        language_level = "Welches Level würdest du ausprobieren? (Typ: 'l1' (einfach), 'l2' (mittel) oder 'l3' (schwer)) Geben Sie 'exit program' ein, um zu beenden: "
+    if language == "deutsch":
+        language_level = "Welches Sprache möchtest du lernen? polnisch oder englisch?: "
         return language_level
-    return None
-
-def check_lvl(level):
-    """Checking and choosing proper file with words and translations"""
-    if level == "l1":
-        file_level = "level1.csv"
-        return file_level
-    if level == "l2":
-        file_level = "level2.csv"
-        return file_level
-    if level == "l3":
-        file_level = "level3.csv"
-        return file_level
-    if level == "exit program":
+    if language == "exit program":
         exit_program()
     return None
+
+def chosen_lang(learn_lang):
+    """Checking and choosing proper file with words and translations"""
+    if learn_lang in language_list:
+        typed_lang.append(learn_lang)
+        file_level = "test.csv"
+        return file_level, typed_lang
+    if learn_lang == "exit program":
+        exit_program()
+    return None
+
+def pol_lang():
+    """Shuffling and printing pair of words to print, scoring - ONLY LANGUAGES POLISH"""
+    score = 0
+    total_points = len(word_list)
+    if "angielski" in typed_lang:
+        while word_list:
+            for pair_word in word_list.copy():
+                random.shuffle(word_list)
+                pl_word = pair_word["pl"]
+                eng_word = pair_word["eng"]
+                answer = input(f"Tłumaczenie słowa '{eng_word}' brzmi: ").lower()
+                if answer == pl_word:
+                    word_list.remove(pair_word)
+                    score += 1
+                    print(f"Twój aktualny wynik {score} z {total_points} punktów")
+                elif answer == "exit program":
+                    exit_program()
+                else:
+                    print(f"Poprawne słowo {pl_word}")
+        return print("Wszystkie słowa poprawnie przetłumaczone, gratulacje!"), exit_program()
+
+    if "niemiecki" in typed_lang:
+        while word_list:
+            for pair_word in word_list.copy():
+                random.shuffle(word_list)
+                pl_word = pair_word["pl"]
+                de_word = pair_word["de"]
+                answer = input(f"Tłumaczenie słowa '{de_word}' brzmi: ").lower()
+                if answer == pl_word:
+                    word_list.remove(pair_word)
+                    score += 1
+                    print(f"Twój aktualny wynik {score} z {total_points} punktów")
+                elif answer == "exit program":
+                    exit_program()
+                else:
+                    print(f"Poprawne słowo {pl_word}")
+        return print("Wszystkie słowa poprawnie przetłumaczone, gratulacje!"), exit_program()
+    return None
+
 
 def exit_program():
     """Exit program function"""
