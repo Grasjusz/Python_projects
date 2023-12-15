@@ -5,7 +5,7 @@ import sys
 
 language_list = ["angielski", "niemiecki", "polish", "german", "polnisch", "englisch"]
 word_list: list = []
-typed_lang: list = []
+typed_lang_study: list = []
 def main():
     """Main program"""
     while True:
@@ -18,12 +18,14 @@ def main():
                     pl, eng, de = line.strip().split(",")
                     word_list.append({"pl":pl, "eng":eng, "de":de})
         except (NameError, TypeError):
-            print("You have to choose between 3 levels, type: l1, l2 or l3")
+            print("You need to select the program language: polski, english or deutsch\n"
+                  "Musisz wybrać język programu: polski, english lub deutsch\n"
+                  "Sie müssen die Programmsprache auswählen: polski, english oder deutsch")
             continue
         else:
             break
+    lang_selection(language)
 
-    de_lang()
 
 def check_language(language):
     """check chosen language and run proper"""
@@ -45,11 +47,21 @@ def check_language(language):
 def chosen_lang(learn_lang):
     """Checking and choosing proper file with words and translations"""
     if learn_lang in language_list:
-        typed_lang.append(learn_lang)
+        typed_lang_study.append(learn_lang)
         file_level = "test.csv"
-        return file_level, typed_lang
+        return file_level, typed_lang_study
     if learn_lang == "exit program":
         exit_program()
+    return None
+
+def lang_selection(language):
+    """Chosing proper program function depends of chosen program language"""
+    if language == "polski":
+        return pol_lang()
+    if language == "english":
+        return eng_lang()
+    if language == "deutsch":
+        return de_lang()
     return None
 
 def exit_program():
@@ -61,7 +73,7 @@ def pol_lang():
     """Shuffling and printing pair of words to print, scoring - ONLY LANGUAGES POLISH"""
     score = 0
     total_points = len(word_list)
-    if "angielski" in typed_lang:
+    if "angielski" in typed_lang_study:
         while word_list:
             for pair_word in word_list.copy():
                 random.shuffle(word_list)
@@ -78,7 +90,7 @@ def pol_lang():
                     print(f"Poprawne słowo '{pl_word}'")
         return print("Wszystkie słowa poprawnie przetłumaczone, gratulacje!"), exit_program()
 
-    if "niemiecki" in typed_lang:
+    if "niemiecki" in typed_lang_study:
         while word_list:
             for pair_word in word_list.copy():
                 random.shuffle(word_list)
@@ -100,7 +112,7 @@ def eng_lang():
     """Shuffling and printing pair of words to print, scoring - ONLY LANGUAGES ENGLISH"""
     score = 0
     total_points = len(word_list)
-    if "polish" in typed_lang:
+    if "polish" in typed_lang_study:
         while word_list:
             for pair_word in word_list.copy():
                 random.shuffle(word_list)
@@ -117,7 +129,7 @@ def eng_lang():
                     print(f"Proper word: '{eng_word}'")
         return print("All words translated correctly, congratulations!"), exit_program()
 
-    if "german" in typed_lang:
+    if "german" in typed_lang_study:
         while word_list:
             for pair_word in word_list.copy():
                 random.shuffle(word_list)
@@ -136,10 +148,10 @@ def eng_lang():
     return None
 
 def de_lang():
-    """Shuffling and printing pair of words to print, scoring - ONLY LANGUAGES ENGLISH"""
+    """Shuffling and printing pair of words to print, scoring - ONLY LANGUAGES GERMAN"""
     score = 0
     total_points = len(word_list)
-    if "polnisch" in typed_lang:
+    if "polnisch" in typed_lang_study:
         while word_list:
             for pair_word in word_list.copy():
                 random.shuffle(word_list)
@@ -156,7 +168,7 @@ def de_lang():
                     print(f"Richtiges Wort '{de_word}'")
         return print("Alle Wörter richtig übersetzt, Glückwunsch!"), exit_program()
 
-    if "englisch" in typed_lang:
+    if "englisch" in typed_lang_study:
         while word_list:
             for pair_word in word_list.copy():
                 random.shuffle(word_list)
