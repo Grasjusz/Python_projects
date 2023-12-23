@@ -24,7 +24,7 @@ def main():
             #print(f"{list_of_files[file_id]}")
             src = path + el
             list_images_src.append(src)
-            os.rename(f"{list_images_src[file_id]}",f"zdj{file_id:03d}.{one_list[1]}")
+            os.rename(f"{list_images_src[file_id]}",f"{path}zdj{file_id:03d}.{one_list[1]}")
             file_id += 1
 
 
