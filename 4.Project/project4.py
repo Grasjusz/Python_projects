@@ -1,11 +1,11 @@
+"""Importing modules"""
 import csv
 import re
 
 
-level = 0
-
 def main():
-     
+    """Main module running program."""
+
     while True:
         try:
             level = 1
@@ -14,20 +14,20 @@ def main():
             second_name = name_func(input("What's your second name?: "), level)
             level = 3
             email = email_func(input("What's your email adress?: "), level)
-            print("all answers saved!")
+            details_list = [name, second_name, email]
+            correct_func(input(f"""Are these details correct: {details_list}?
+if yes, type 'Y' if no, type 'N' - process will start again: """), details_list)
             break
-        except:
+        except ValueError:
             print("Ocurred error, try again")
-            
-    
-    
-    
-    
-    
+
 def name_func(name, level):
-    name_pattern = re.search(r"^(?=.*[a-zA-Z]{1,})(?=.*[\d]{0,})[a-zA-ZĄąĆćĘęŁłŃńÓóŚśŹźŻż]{3,15}$", name)
+    """Checking if name, second name is proper - no digits etc allowed."""
+
+    name_pattern = re.search(r"^(?=.*[a-zA-Z]{1,})(?=.*[\d]{0,})[a-zA-ZĄąĆćĘęŁłŃńÓóŚśŹźŻż]{3,15}$",
+                             name)
     if name_pattern:
-        return True
+        return name
     else:
         if level == 1:
             print("There is error in name")
@@ -35,26 +35,33 @@ def name_func(name, level):
         if level == 2:
             print("There is error in second name")
             name = name_func(input("What's your second name?: "), level)
-        return None
-        
+        return name
 
-    
 def email_func(email, level):
-    email_pattern = re.search(r"^((?!\.)[\w\-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$", email)
+    """Checking if email is proper format."""
+
+    email_pattern = re.search(r"^((?!\.)[\w\-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$",
+                              email)
     if email_pattern:
-        return True
+        return email
     else:
         if level == 3:
             print("There is error in email adress")
             email = email_func(input("What's your email adress?: "), level)
-        return None
-    
-    
-    
-    
-    
-    
-    
-    
+        return email
+
+def correct_func(correct, details_list):
+    """Checking if user input is to refullfilement or to save.
+    If save - informations are saved to CSV file."""
+
+    if correct in ["Y","y","Yes","yes"]:
+        with open("4.Project/contacts.csv", "a", encoding="utf-8", newline="") as file:
+            writer = csv.writer(file)
+            writer.writerow(details_list)
+            file.close()
+            print("Saved!")
+    if correct in ["N","n","No","no"]:
+        return main()
+
 if __name__ == "__main__":
     main()
