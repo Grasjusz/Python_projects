@@ -26,7 +26,6 @@ def main():
             break
     lang_selection(language)
 
-
 def check_language(language):
     """check chosen language and run proper"""
     translate = {
@@ -55,7 +54,7 @@ def chosen_lang(learn_lang):
     return None
 
 def lang_selection(language):
-    """Chosing proper program function depends of chosen program language"""
+    """Chosing proper program function depends of chosen program language and runs the target program(function)"""
     if language == "polski":
         return pol_lang()
     if language == "english":
@@ -70,7 +69,7 @@ def exit_program():
     sys.exit(0)
 
 def pol_lang():
-    """Shuffling and printing pair of words to print, scoring - ONLY LANGUAGES POLISH"""
+    """Shuffling and printing pair of words to print, scoring - ONLY LANGUAGE POLISH"""
     score = 0
     total_points = len(word_list)
     if "angielski" in typed_lang_study:
@@ -109,7 +108,7 @@ def pol_lang():
     return None
 
 def eng_lang():
-    """Shuffling and printing pair of words to print, scoring - ONLY LANGUAGES ENGLISH"""
+    """Shuffling and printing pair of words to print, scoring - ONLY LANGUAGE ENGLISH"""
     score = 0
     total_points = len(word_list)
     if "polish" in typed_lang_study:
@@ -148,7 +147,7 @@ def eng_lang():
     return None
 
 def de_lang():
-    """Shuffling and printing pair of words to print, scoring - ONLY LANGUAGES GERMAN"""
+    """Shuffling and printing pair of words to print, scoring - ONLY LANGUAGE GERMAN"""
     score = 0
     total_points = len(word_list)
     if "polnisch" in typed_lang_study:

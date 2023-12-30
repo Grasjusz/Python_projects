@@ -1,6 +1,6 @@
-A program for collecting contact data, e.g. newsletter or contact form.
+A program for collecting contact data, e.g. newsletter or contact form using REGEX for validation.
 
-The program collects details such as: name, last name and e-mail address, each command starts after correct entry, if the entered data is incorrect, a message will appear informing about the incorrect entry and will ask for the correct entry again.
+The program collects details such as: name, last name (including polish letters like: "ą,ć,ę,ł,ń,ó,ś,ź,ż") and e-mail address, each command starts after correct entry, if the entered data is incorrect, a message will appear informing about the incorrect entry and will ask for the correct entry again.
 
 At the end there is a summary of whether the data is correct - the user manually enters "n" or "no", if not - the program will restart, if he enters "y" or "yes" the program will save the information to the appropriate file in CSV format.
 
