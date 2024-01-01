@@ -22,7 +22,7 @@ if yes, type 'Y' if no, type 'N' - process will start again: """), details_list)
             print("Ocurred error, try again")
 
 def name_func(name, level):
-    """Checking if name, second name is proper - no digits etc allowed."""
+    """Checking if name, second name is proper - no digits etc allowed. Min 3 letters, Max 15 letters"""
 
     name_pattern = re.search(r"^(?=.*[a-zA-Z]{1,})(?=.*[\d]{0,})[a-zA-ZĄąĆćĘęŁłŃńÓóŚśŹźŻż]{3,15}$",
                              name)
