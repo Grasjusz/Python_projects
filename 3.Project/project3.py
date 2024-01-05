@@ -23,13 +23,13 @@ def main():
             for el_remove in one_list:
                 print(el_remove)
                 list_of_files.remove(el_remove)
-        #Rename only photos, graphic files etc.
+        #↓ ↓ ↓Rename only photos, graphic files etc↓ ↓ ↓
         if one_list[1] not in ["jpg", "jpeg", "gif", "png"]:
             print(one_list)
-            together = f"{one_list[0]}.{one_list[1]}"
-            print(together)
-            list_of_files.remove(together)
-            continue
+            not_photo = f"{one_list[0]}.{one_list[1]}"
+            print(f"{not_photo} was not renamed becouse is not a graphic file.")
+            list_of_files.remove(not_photo)
+            return "removed"           
         for el in list_of_files:
         #↓ ↓ ↓ If file is a directory, will be omitted and removed from list,↓ ↓ ↓
         #↓ ↓ ↓ checking if file or directory and final renaming↓ ↓ ↓
@@ -38,7 +38,7 @@ def main():
             if is_file is True:
                 src = path + el
                 list_images_src.append(src)
-                print(f"""{list_images_src[file_id]} changed name to:,
+                print(f"""{list_images_src[file_id]} changed name to:
                       {path}{naming_pattern}{file_id:03d}.{one_list[1]}""")
  #               os.rename(f"{list_images_src[file_id]}",f"{path}zdj{file_id:03d}.{one_list[1]}")
                 list_of_files.remove(el)
