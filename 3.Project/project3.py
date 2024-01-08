@@ -13,20 +13,19 @@ def main():
     global Naming_Pattern
     global List_Of_Files
 
-
-    directory_path = str(input("""path to folder with files, in program folder tree for eg:
-                     'images/...' or 'images/': """))
-    if_slash(directory_path)
+    directory_path = if_slash(str(input("""path to folder with files, in program folder tree for eg:
+                     'images/...' or 'images/': """)))
     Naming_Pattern = str(input("Pattern to name all files for eg: 'photos', 'vacation', 'kitty', etc..: "))
     List_Of_Files = os.listdir(directory_path)
     split(List_Of_Files)
     if_have_ext(listed)
     if_proper_ext(listed)
     renaming_checking(listed)
+    print("Work done")
 
 def if_slash(typed_path):
     """↓ ↓ ↓check if slash at end of path is correct - if not add one↓ ↓ ↓"""
-    last_char_list = ["]", ":", "//","?", ";", "#", "$", "@", "%", "^", "&"]
+    last_char_list = ["]", ":", "\\","?", ";", "#", "$", "@", "%", "^", "&", "'"]
     last_slash = typed_path[len(typed_path) -1]
     if last_slash != "/":
         if last_slash in last_char_list:
@@ -38,8 +37,10 @@ def if_slash(typed_path):
             typed_path = f"{typed_path}/"
             print(typed_path)
             return typed_path
+    if last_slash == "/":
+        return typed_path
     else:
-        pass
+        print("Typed path is wrong, please try again")
 
 
 def split(to_path):
@@ -47,7 +48,7 @@ def split(to_path):
     for file in to_path:
         splited = file.split(".")
         listed.append(splited)
-
+    return listed
 def if_have_ext(el_list):
     """↓ ↓ ↓ If there is a file without extension, will be omitted and removed from list ↓ ↓ ↓"""
     for el in el_list:
@@ -59,6 +60,7 @@ def if_have_ext(el_list):
                 listed.remove([el_remove])
         else:
             continue
+    return List_Of_Files, listed
 
 def if_proper_ext(el_list):
     """↓ ↓ ↓Rename only photos, providen graphic files ↓ ↓ ↓"""
@@ -69,7 +71,7 @@ def if_proper_ext(el_list):
             print(f"{not_photo} was not renamed because is not a proper graphic file.")
             List_Of_Files.remove(not_photo)
             listed.remove(little_list)
-            return List_Of_Files
+    return List_Of_Files, listed
 
 def renaming_checking(final_list):
     """↓ ↓ ↓ If file is a directory, will be omitted and removed from list,↓ ↓ ↓
@@ -90,9 +92,6 @@ def renaming_checking(final_list):
             file_id += 1
         else:
             List_Of_Files.remove(full_file_name)
-
-
-#to do if there dir no extist, or some failures happednd - print proper comment
 
 if __name__ == "__main__":
     main()
