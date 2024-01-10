@@ -12,10 +12,16 @@ def main():
     global directory_path
     global Naming_Pattern
     global List_Of_Files
-
-    directory_path = if_slash(str(input("""path to folder with files, in program folder tree for eg:
+    try:
+        directory_path = if_slash(str(input("""path to folder with files, in program folder tree for eg:
                      'images/...' or 'images/': """)))
-    Naming_Pattern = str(input("Pattern to name all files for eg: 'photos', 'vacation', 'kitty', etc..: "))
+        if directory_path == "":
+            directory_path = if_slash(str(input("""path to folder with files, in program folder tree for eg:
+            'images/...' or 'images/': """)))
+        Naming_Pattern = str(input("Pattern to name all files for eg: 'photos', 'vacation', 'kitty', etc..: "))
+    except (FileNotFoundError, IndexError):
+        print("Error occured, try again")
+        
     List_Of_Files = os.listdir(directory_path)
     split(List_Of_Files)
     if_have_ext(listed)
@@ -25,7 +31,7 @@ def main():
 
 def if_slash(typed_path):
     """↓ ↓ ↓check if slash at end of path is correct - if not add one↓ ↓ ↓"""
-    last_char_list = ["]", ":", "\\","?", ";", "#", "$", "@", "%", "^", "&", "'"]
+    last_char_list = [ "]", ":", "\\","?", ";", "#", "$", "@", "%", "^", "&", "'",]
     last_slash = typed_path[len(typed_path) -1]
     if last_slash != "/":
         if last_slash in last_char_list:
