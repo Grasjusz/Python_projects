@@ -1,5 +1,6 @@
 """↓ ↓ ↓Importing↓ ↓ ↓"""
 import os
+import sys
 
 list_images_src: list = []
 listed: list = []
@@ -21,6 +22,7 @@ def main():
         Naming_Pattern = str(input("Pattern to name all files for eg: 'photos', 'vacation', 'kitty', etc..: "))
     except (FileNotFoundError, IndexError):
         print("Error occured, try again")
+        sys.exit(0)
         
     List_Of_Files = os.listdir(directory_path)
     split(List_Of_Files)
@@ -47,6 +49,7 @@ def if_slash(typed_path):
         return typed_path
     else:
         print("Typed path is wrong, please try again")
+        raise FileNotFoundError
 
 
 def split(to_path):
