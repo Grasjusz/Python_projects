@@ -29,7 +29,7 @@ def test_if_incorrect_slash():
     assert if_slash("test^") == "test/"
     assert if_slash("test&") == "test/"
     assert if_slash("test'") == "test/"
-    
+
 def test_if_slash():
     assert if_slash("test") == "test/"
     assert if_slash("test/") == "test/"
@@ -38,10 +38,11 @@ def test_if_slash():
     #↓ ↓ ↓for wrong path like "test " ↓ ↓ ↓
     with pytest.raises(FileNotFoundError, match="Error occured, try again"):
         raise FileNotFoundError("Error occured, try again")
-    
+
 def test_split():
     assert split(["test.png", "blank.gif", "hello"]) == [["test", "png"], ["blank", "gif"], ["hello"]]
-    
+
     #do poprawy
 def test_if_have_ext():
-    assert if_have_ext(["test.png", "blank.gif", "hello"]) == ["test.png", "blank.gif",]
+    List_Of_Files = ["test.png", "blank.gif", "hello"]
+    assert if_have_ext([["test", "png"], ["blank", "gif"], ["hello"]]) == [["test", "png"], ["blank", "gif"]]

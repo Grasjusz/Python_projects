@@ -5,7 +5,7 @@ import sys
 list_images_src: list = []
 listed: list = []
 Naming_Pattern: str = ""
-List_Of_Files: str = ""
+List_Of_Files: list = []
 directory_path: str = ""
 
 def main():
@@ -23,7 +23,7 @@ def main():
     except (FileNotFoundError, IndexError):
         print("Error occured, try again")
         sys.exit(0)
-        
+
     List_Of_Files = os.listdir(directory_path)
     split(List_Of_Files)
     if_have_ext(listed)
@@ -58,13 +58,12 @@ def split(to_path):
         splited = file.split(".")
         listed.append(splited)
     return listed
+
 def if_have_ext(el_list):
     """↓ ↓ ↓ If there is a file without extension, will be omitted and removed from list ↓ ↓ ↓"""
     for el in el_list:
         if len(el) <= 1:
-            print(el)
             for el_remove in el:
-                print(el_remove)
                 List_Of_Files.remove(el_remove)
                 listed.remove([el_remove])
         else:
