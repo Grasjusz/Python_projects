@@ -74,7 +74,6 @@ def if_proper_ext(el_list):
     """↓ ↓ ↓Rename only photos, providen graphic files ↓ ↓ ↓"""
     for little_list in el_list:
         if little_list[1] not in ["jpg", "jpeg", "gif", "png"]:
-            print(little_list)
             not_photo = f"{little_list[0]}.{little_list[1]}"
             print(f"{not_photo} was not renamed because is not a proper graphic file.")
             List_Of_Files.remove(not_photo)
@@ -87,15 +86,13 @@ def renaming_checking(final_list):
     file_id = 0
     for little_list in final_list:
         full_file_name = f"{little_list[0]}.{little_list[1]}"
-        print(full_file_name)
         is_file = os.path.isfile(f"{directory_path}{full_file_name}")
-        print(f"{directory_path}{full_file_name}-{is_file}")
         if is_file is True:
             src = directory_path + full_file_name
             list_images_src.append(src)
             print(f"""{list_images_src[file_id]} changed name to:
                     {directory_path}{Naming_Pattern}{file_id:03d}.{little_list[1]}""")
-    #              os.rename(f"{list_images_src[file_id]}",f"{directory_path}zdj{file_id:03d}.{one_list[1]}")
+            os.rename(f"{list_images_src[file_id]}",f"{directory_path}{Naming_Pattern}{file_id:03d}.{little_list[1]}")
             List_Of_Files.remove(full_file_name)
             file_id += 1
         else:
