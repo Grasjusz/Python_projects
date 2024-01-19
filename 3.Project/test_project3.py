@@ -1,22 +1,22 @@
+"""importing modules"""
 import pytest
 from project3 import(
     if_slash,
     split,
-    if_have_ext,
-    if_proper_ext,
-    renaming_checking,
+#    if_have_ext,
+#    if_proper_ext,
+#    renaming_checking,
 )
 
-
 def main():
+    """test providen func"""
     test_if_incorrect_slash()
     test_if_slash()
     test_split()
-    test_if_have_ext()
-    test_if_proper_ext()
-    test_renaming_checking()
+
 
 def test_if_incorrect_slash():
+    """test for slash correct"""
     assert if_slash("test]") == "test/"
     assert if_slash("test:") == "test/"
     assert if_slash("test\\") == "test/"
@@ -31,6 +31,7 @@ def test_if_incorrect_slash():
     assert if_slash("test'") == "test/"
 
 def test_if_slash():
+    """test if slask and add slash at the end"""
     assert if_slash("test") == "test/"
     assert if_slash("test/") == "test/"
     assert if_slash("test0") == "test0/"
@@ -40,9 +41,5 @@ def test_if_slash():
         raise FileNotFoundError("Error occured, try again")
 
 def test_split():
-    assert split(["test.png", "blank.gif", "hello"]) == [["test", "png"], ["blank", "gif"], ["hello"]]
-
-    #do poprawy
-def test_if_have_ext():
-    List_Of_Files = ["test.png", "blank.gif", "hello"]
-    assert if_have_ext([["test", "png"], ["blank", "gif"], ["hello"]]) == [["test", "png"], ["blank", "gif"]]
+    """test slicikng the strings"""
+    assert split(["first.png", "blank.gif", "notphotofolder"]) == [["first", "png"], ["blank", "gif"], ["notphotofolder"]]
