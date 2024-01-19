@@ -14,12 +14,15 @@ def main():
     global Naming_Pattern
     global List_Of_Files
     try:
-        directory_path = if_slash(str(input("""path to folder with files, in program folder tree for eg:
-                     'images/...' or 'images/': """)))
+        directory_path = if_slash(str(input("""path to folder with files,
+                                            in program folder tree for eg:
+                                            'images/...' or 'images/': """)))
         if directory_path == "":
-            directory_path = if_slash(str(input("""path to folder with files, in program folder tree for eg:
-            'images/...' or 'images/': """)))
-        Naming_Pattern = str(input("Pattern to name all files for eg: 'photos', 'vacation', 'kitty', etc..: "))
+            directory_path = if_slash(str(input("""path to folder with files,
+                                                in program folder tree for eg:
+                                                'images/...' or 'images/': """)))
+        Naming_Pattern = str(input("""Pattern to name all files for eg:
+                                   'photos', 'vacation', 'kitty', etc..: """))
     except (FileNotFoundError, IndexError):
         print("Error occured, try again")
         sys.exit(0)
@@ -92,7 +95,8 @@ def renaming_checking(final_list):
             list_images_src.append(src)
             print(f"""{list_images_src[file_id]} changed name to:
                     {directory_path}{Naming_Pattern}{file_id:03d}.{little_list[1]}""")
-            os.rename(f"{list_images_src[file_id]}",f"{directory_path}{Naming_Pattern}{file_id:03d}.{little_list[1]}")
+            os.rename(f"{list_images_src[file_id]}",
+                      f"{directory_path}{Naming_Pattern}{file_id:03d}.{little_list[1]}")
             List_Of_Files.remove(full_file_name)
             file_id += 1
         else:

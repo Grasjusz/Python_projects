@@ -42,4 +42,8 @@ def test_if_slash():
 
 def test_split():
     """test slicikng the strings"""
-    assert split(["first.png", "blank.gif", "notphotofolder"]) == [["first", "png"], ["blank", "gif"], ["notphotofolder"]]
+    assert split(["first.png", "blank.gif", "notphotofolder"]) == [
+                                                                    ["first", "png"],
+                                                                    ["blank", "gif"],
+                                                                    ["notphotofolder"]
+                                                                    ]
