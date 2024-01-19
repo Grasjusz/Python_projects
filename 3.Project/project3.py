@@ -42,11 +42,11 @@ def if_slash(typed_path):
         if last_slash in last_char_list:
             typed_path = typed_path.rstrip(typed_path[-1])
             typed_path = f"{typed_path}/"
-            print(typed_path)
+            print(f"Attention! Path changed to: '{typed_path}' !")
             return typed_path
         if last_slash.isalpha() or last_slash.isdigit():
             typed_path = f"{typed_path}/"
-            print(typed_path)
+            print(f"Attention! Path changed to: '{typed_path}' !")
             return typed_path
     if last_slash == "/":
         return typed_path
