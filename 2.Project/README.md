@@ -1,4 +1,4 @@
-A program for learning top most used words in polish, english, german, in polish, english, german.
+A program for learning top most used words in polish, english, german.
 
 Once entered correctly, the word will not appear again. The program will close automatically when the entire list is completed.
 Words appear randomly.
