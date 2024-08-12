@@ -39,11 +39,11 @@ def test_checklist():
 
 def test_todo():
     fault = "brak sprzęgła"
-    assert todo(fault) == "Usterka zgłoszona przez klienta: ", fault
+    assert todo(fault) == ["Usterka zgłoszona przez klienta: ", fault]
     
 def test_repaired():
     repaired_parts = ["wycieki z silnika", "wymiana filtrów", "komplet sprzęgło"]
-    assert repaired(repaired_parts) == "Wykonano naprawy: ", repaired_parts
+    assert repaired(repaired_parts) == ["Wykonano naprawy: ", repaired_parts]
     
 def test_repair_fast():
     to_repair_fast = ["hamulce", "zawieszenie"]
