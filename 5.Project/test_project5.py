@@ -1,7 +1,8 @@
 import pytest
-from project5 import{
-    
-}
+
+from project5 import(
+Client,
+)
 
 
 def test():
@@ -18,7 +19,9 @@ def test():
     
     
 def test_client_name():
-    assert client_name("Anna Kowalska") == ["Anna", "Kowalska"]
+    cn = Client
+    name = "Anna Kowalska"
+    assert cn.client_name(name) == ["Anna", "Kowalska"]
     
 def test_client_car():
     assert client_car("Volvo 760 1999 2.5tdi") == ["Volvo", "760", "1999", "2.5tdi"]
