@@ -32,12 +32,18 @@ def client_name_func():
     return Client.client_name(client_name)
 
 def client_car_func():
-    brand, model, year, engine, vin = input("Marka, Model, Rok, Silnik, Numer VIN: ").split()
-    print(brand)
-    print(model)
-    print(year)
-    print(engine)
-    print(vin)
+    while True:
+        car_param = {"Marka":"brak", "Model":"brak", "Rok":"brak", "Silnik":"brak", "VIN":"brak"}
+        for key in car_param:
+            value = input(f"Podaj {key}: ")
+            if value:
+                car_param.update({key: value})
+            else:
+                print(f"Nie wpisałeś: {key}")
+                continue
+        break
+    print(car_param["Marka"])
+
 
 if __name__ == "__main__":
     main()
