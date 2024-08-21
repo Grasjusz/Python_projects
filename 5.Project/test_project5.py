@@ -2,12 +2,13 @@ import pytest
 
 from project5 import(
 Client,
+client_car_func
 )
 
 
 def test():
     test_client_name
-    test_client_car
+    test_client_car_func
     test_client_car_vin
     test_date
     test_checklist
@@ -23,8 +24,9 @@ def test_client_name():
     name = "Anna Kowalska"
     assert cn.client_name(name) == ["Anna", "Kowalska"]
     
-def test_client_car():
-    assert client_car("Volvo 760 1999 2.5tdi") == ["Volvo", "760", "1999", "2.5tdi"]
+def test_client_car_func():
+    car_param = {"Marka": "Volvo", "Model": "XC60", "Rok": "1995", "Silnik": "2.5tdi", "VIN": " "}
+    assert client_car_func() == {"Marka":"Volvo", "Model":"XC60", "Rok":"1995", "Silnik":"2.5tdi", "VIN":"brak"}
     
 def test_client_car_vin():
     assert client_car_vin("W0lO8201929858201858") == ["W0lO8201929858201858"]

@@ -42,7 +42,7 @@ def client_car_func():
                 print(f"Nie wpisałeś: {key}")
                 continue
         break
-    print(car_param["Marka"])
+    print(car_param)
 
 
 if __name__ == "__main__":
