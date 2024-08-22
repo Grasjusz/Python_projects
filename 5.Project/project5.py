@@ -21,11 +21,22 @@ class Client_Car:
         self.engine = engine
         self.vin = vin
 
+class Dates:
+    def __init__(self, accept_date, end_date):
+        self.accept_date = accept_date
+        self.end_date = end_date
+    def combined_dates(accept_date, end_date):
+        accept_date = "Data przyjęcia pojazdu do naprawy: ", accept_date
+        end_date = "Data wydania pojazdu z naprawy: ", end_date
+        return accept_date, end_date
 
 def main():
     client = client_name_func()
     print(f"{client}")
     client_car = client_car_func()
+    print(client_car)
+    all_dates = dates()
+    print(all_dates)
 
 def client_name_func():
     client_name = input("Imię i nazwisko klienta: ")
@@ -42,8 +53,14 @@ def client_car_func():
                 print(f"Nie wpisałeś: {key}")
                 continue
         break
-    print(car_param)
+    return car_param
 
+def dates():
+    accept_date = input("Data przyjęcia pojazdu: ")
+    end_date = input("Data wydania pojazdu: ")
+    return Dates.combined_dates(accept_date, end_date)
+
+#To refine dates to work with module datetime (to control right dates)
 
 if __name__ == "__main__":
     main()

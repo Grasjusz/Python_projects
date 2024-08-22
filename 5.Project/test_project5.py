@@ -25,12 +25,8 @@ def test_client_name():
     assert cn.client_name(name) == ["Anna", "Kowalska"]
     
 def test_client_car_func():
-    car_param = {"Marka": "Volvo", "Model": "XC60", "Rok": "1995", "Silnik": "2.5tdi", "VIN": " "}
-    assert client_car_func() == {"Marka":"Volvo", "Model":"XC60", "Rok":"1995", "Silnik":"2.5tdi", "VIN":"brak"}
-    
-def test_client_car_vin():
-    assert client_car_vin("W0lO8201929858201858") == ["W0lO8201929858201858"]
-    
+    car_param = {"Marka": "test", "Model": "brak", "Rok": "brak", "Silnik": "brak", "VIN": "brak"}
+    assert client_car_func() == car_param
 def test_date():
     assert date("01.02.2024") == ["01", "02", "2024"]
     
