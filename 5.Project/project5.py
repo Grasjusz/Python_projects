@@ -1,5 +1,5 @@
 """Importing"""
-from mimetypes import inited
+import datetime
 
 
 class Client:
@@ -13,7 +13,7 @@ class Client:
         name = self.split()
         return name
 
-class Client_Car:
+class ClientCar:
     def __init__(self, brand, model, year, engine, vin):
         self.brand = brand
         self.model = model
@@ -56,9 +56,21 @@ def client_car_func():
     return car_param
 
 def dates():
-    accept_date = input("Data przyjęcia pojazdu: ")
-    end_date = input("Data wydania pojazdu: ")
-    return Dates.combined_dates(accept_date, end_date)
+    while True:
+        try:
+            date_format = "%d.%m.%Y"
+            accept_date = input("Data przyjęcia pojazdu DD.MM.RRRR: ")
+            accept_date = datetime.datetime.strptime(accept_date, date_format)
+            accept_date_new = datetime.datetime.strftime(accept_date, date_format)
+            end_date = input("Data wydania pojazdu DD.MM.RRRR: ")
+            end_date = datetime.datetime.strptime(end_date, date_format)
+            end_date_new = datetime.datetime.strftime(end_date, date_format)
+        except ValueError:
+            print("Niepoprawny format daty, prawidłowy format: DD.MM.RRRR")
+            continue
+        break
+
+    return Dates.combined_dates(accept_date_new, end_date_new)
 
 #To refine dates to work with module datetime (to control right dates)
 
