@@ -4,6 +4,7 @@ from project5 import(
 Client,
 client_car_func,
 dates_func,
+checklist_func
 )
 
 
@@ -11,7 +12,7 @@ def test():
     test_client_name
     test_client_car_func
     test_date
-    test_checklist
+    test_checklist_func
     test_todo
     test_repaired
     test_repair_fast
@@ -36,13 +37,13 @@ def test_date():
     assert dates_func() == (('Data przyjęcia pojazdu do naprawy: ', date1),('Data wydania pojazdu z naprawy: ', date2))
 
     
-def test_checklist():
+def test_checklist_func():
     check_list = {
         "światła":"ok", 
         "zawieszenie":"ok", 
         "opony":"nie ok"
     }
-    assert checklist(check_list) == ["Oświetlenie OK", "Zawieszenie OK", "Opony do wymiany"]
+    assert checklist_func(check_list) == ["Oświetlenie OK", "Zawieszenie OK", "Opony do wymiany"]
 
 def test_todo():
     fault = "brak sprzęgła"
