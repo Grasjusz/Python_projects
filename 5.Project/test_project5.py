@@ -2,14 +2,14 @@ import pytest
 
 from project5 import(
 Client,
-client_car_func
+client_car_func,
+dates_func,
 )
 
 
 def test():
     test_client_name
     test_client_car_func
-    test_client_car_vin
     test_date
     test_checklist
     test_todo
@@ -25,10 +25,16 @@ def test_client_name():
     assert cn.client_name(name) == ["Anna", "Kowalska"]
     
 def test_client_car_func():
+    """running pytest with -s"""
     car_param = {"Marka": "test", "Model": "brak", "Rok": "brak", "Silnik": "brak", "VIN": "brak"}
     assert client_car_func() == car_param
+
 def test_date():
-    assert date("01.02.2024") == ["01", "02", "2024"]
+    """running pytest with -s, and desired date"""
+    date1 = "01.01.1990"
+    date2 = "01.01.2024"
+    assert dates_func() == (('Data przyjęcia pojazdu do naprawy: ', date1),('Data wydania pojazdu z naprawy: ', date2))
+
     
 def test_checklist():
     check_list = {

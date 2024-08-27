@@ -35,8 +35,10 @@ def main():
     print(f"{client}")
     client_car = client_car_func()
     print(client_car)
-    all_dates = dates()
+    all_dates = dates_func()
     print(all_dates)
+    car_checklist = checklist_func()
+
 
 def client_name_func():
     client_name = input("Imię i nazwisko klienta: ")
@@ -55,7 +57,7 @@ def client_car_func():
         break
     return car_param
 
-def dates():
+def dates_func():
     while True:
         try:
             date_format = "%d.%m.%Y"
@@ -69,10 +71,22 @@ def dates():
             print("Niepoprawny format daty, prawidłowy format: DD.MM.RRRR")
             continue
         break
-
     return Dates.combined_dates(accept_date_new, end_date_new)
 
-#To refine dates to work with module datetime (to control right dates)
+def checklist_func():
+    while True:
+        car_checklist = {"Zawieszenie":"brak", "Oświetlenie":"brak", "Klimatyzacja":"brak",
+                         "Silnik":"brak", "Koła":"brak", "Hamulce":"brak", "Nadwozie":"brak",
+                         "Podwozie":"brak", "Korozja":"brak",}
+        for key in car_checklist:
+            value = input(f"Podaj {key}: ")
+            if value:
+                car_checklist.update({key: value})
+            else:
+                print(f"Nie wpisałeś {key}")
+                continue
+        break
+    return car_checklist
 
 if __name__ == "__main__":
     main()
