@@ -119,7 +119,7 @@ def repaired_func():
         else:
             break
     return repaired_list
-
+....
 
 if __name__ == "__main__":
     main()
