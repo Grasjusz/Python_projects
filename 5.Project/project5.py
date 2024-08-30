@@ -121,6 +121,8 @@ def repaired_func():
             break
     return repaired_list
 
+#to do next function with recommedations
+
 
 if __name__ == "__main__":
     main()
