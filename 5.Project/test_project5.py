@@ -4,7 +4,9 @@ from project5 import(
 Client,
 client_car_func,
 dates_func,
-checklist_func
+checklist_func,
+todo_func,
+repaired_func
 )
 
 
@@ -13,7 +15,7 @@ def test():
     test_client_car_func
     test_date
     test_checklist_func
-    test_todo
+    test_todo_func
     test_repaired
     test_repair_fast
     test_repair_in_time
@@ -38,20 +40,20 @@ def test_date():
 
     
 def test_checklist_func():
-    check_list = {
-        "światła":"ok", 
-        "zawieszenie":"ok", 
-        "opony":"nie ok"
-    }
-    assert checklist_func(check_list) == ["Oświetlenie OK", "Zawieszenie OK", "Opony do wymiany"]
+    """running pytest with -s and desired keys"""
+    car_checklist = {"Zawieszenie": "OK", "Oświetlenie": "prawa zarowka", "Klimatyzacja": "brak",
+                     "Silnik": "brak", "Koła": "brak", "Hamulce": "brak", "Nadwozie": "brak",
+                     "Podwozie": "brak", "Korozja": "brak", }
+    assert checklist_func() == car_checklist
 
-def test_todo():
-    fault = "brak sprzęgła"
-    assert todo(fault) == ["Usterka zgłoszona przez klienta: ", fault]
+def test_todo_func():
+    """running pytest with -s and desired keys"""
+    customer_report = "brak sprzęgła"
+    assert todo_func() == customer_report
     
-def test_repaired():
-    repaired_parts = ["wycieki z silnika", "wymiana filtrów", "komplet sprzęgło"]
-    assert repaired(repaired_parts) == ["Wykonano naprawy: ", repaired_parts]
+def test_repaired_func():
+    repaired_list = ["wycieki z silnika", "wymiana filtrów"]
+    assert repaired_func() == repaired_list
     
 def test_repair_fast():
     to_repair_fast = ["hamulce", "zawieszenie"]

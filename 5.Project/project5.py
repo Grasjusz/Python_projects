@@ -31,13 +31,17 @@ class Dates:
         return accept_date, end_date
 
 def main():
-    client = client_name_func()
-    print(f"{client}")
-    client_car = client_car_func()
-    print(client_car)
-    all_dates = dates_func()
-    print(all_dates)
-    car_checklist = checklist_func()
+    #client = client_name_func()
+    #print(f"{client}")
+    #client_car = client_car_func()
+    #print(client_car)
+    #all_dates = dates_func()
+    #print(all_dates)
+    #car_checklist = checklist_func()
+    #customer_todo = todo_func()
+    #print(customer_todo)
+    repaired = repaired_func()
+    print(repaired)
 
 
 def client_name_func():
@@ -79,14 +83,42 @@ def checklist_func():
                          "Silnik":"brak", "Koła":"brak", "Hamulce":"brak", "Nadwozie":"brak",
                          "Podwozie":"brak", "Korozja":"brak",}
         for key in car_checklist:
-            value = input(f"Podaj {key}: ")
+            value = input(f"Checklista {key}: ")
             if value:
                 car_checklist.update({key: value})
             else:
-                print(f"Nie wpisałeś {key}")
+                print(f"Nie wpisałeś: {key}")
                 continue
         break
     return car_checklist
+
+def todo_func():
+    todo_list = []
+    while True:
+        customer_report = input("Awaria, naprawa zgłoszona przez klienta: ")
+        todo_list.append(customer_report)
+        next_report = input("Chcesz dodać kolejną usterkę? y/n ").lower()
+        if next_report == "y":
+            continue
+        elif next_report != "n":
+            continue
+        else:
+            break
+    return todo_list
+
+def repaired_func():
+    repaired_list = []
+    while True:
+        repaired_thing = input("Jakie naprawy zostały wykonane?: ")
+        repaired_list.append(repaired_thing)
+        next_repaired = input("Czy chcesz dodać kolejną rzecz?: y/n ").lower()
+        if next_repaired == "y":
+            continue
+        elif next_repaired != "n":
+            continue
+        else:
+            break
+    return repaired_list
 
 if __name__ == "__main__":
     main()
