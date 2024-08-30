@@ -42,7 +42,7 @@ def main():
     #print(customer_todo)
     repaired = repaired_func()
     print(repaired)
-    ..
+
 
 
 def client_name_func():
