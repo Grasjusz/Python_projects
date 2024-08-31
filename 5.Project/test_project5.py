@@ -6,7 +6,10 @@ client_car_func,
 dates_func,
 checklist_func,
 todo_func,
-repaired_func
+repaired_func,
+repair_fast_func,
+repair_long_func,
+comment_func
 )
 
 
@@ -16,10 +19,10 @@ def test():
     test_date
     test_checklist_func
     test_todo_func
-    test_repaired
+    test_repaired_func
     test_repair_fast
-    test_repair_in_time
-    test_comment
+    test_repair_long()
+    test_comment_func
     
     
 def test_client_name():
@@ -52,16 +55,21 @@ def test_todo_func():
     assert todo_func() == customer_report
     
 def test_repaired_func():
+    """running pytest with -s and desired inputs"""
     repaired_list = ["wycieki z silnika", "wymiana filtrów"]
     assert repaired_func() == repaired_list
     
 def test_repair_fast():
-    to_repair_fast = ["hamulce", "zawieszenie"]
-    assert repair_fast(to_repair_fast) == ["Jak najszybciej zaleca się naprawę: ", to_repair_fast]
+    """running pytest with -s and desired inputs"""
+    to_repair_fast = "hamulce, zawieszenie"
+    assert repair_fast_func() == f"Pilne naprawy które należy wykonać jak najszybciej: {to_repair_fast}"
 
-def test_repair_in_time():
-    to_repair_in_time = ["światła przód"]
-    assert repair_in_time(to_repair_in_time) == ["Zaleca się w przeciągu roku naprawę: ", to_repair_in_time]
+def test_repair_long():
+    """running pytest with -s and desired inputs"""
+    to_repair_in_time = "wycieki z silnika"
+    assert repair_long_func() == f"Przed następnym przeglądem należy naprawić: {to_repair_in_time}"
 
-def test_comment():
-    assert comment("Wszystko wykonano zgodnie z harmonogramem, duza ilość korozji na prograch") == "Wszystko wykonano zgodnie z harmonogramem, duza ilość korozji na prograch"
+def test_comment_func():
+    """running pytest with -s and desired inputs"""
+    comments = "Testowy koment"
+    assert comment_func() == f"Komentarz, dodatkowe informacje: {comments}"

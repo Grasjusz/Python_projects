@@ -40,9 +40,14 @@ def main():
     #car_checklist = checklist_func()
     #customer_todo = todo_func()
     #print(customer_todo)
-    repaired = repaired_func()
-    print(repaired)
-
+    #repaired = repaired_func()
+    #print(repaired)
+    #repair_recommendation = repair_fast_func()
+    #print(repair_recommendation)
+    #repair_in_long_time = repair_long_func()
+    #print(repair_in_long_time)
+    last_comments = comment_func()
+    print(last_comments)
 
 
 def client_name_func():
@@ -121,7 +126,21 @@ def repaired_func():
             break
     return repaired_list
 
-#to do next function with recommedations
+def repair_fast_func():
+    repair_fast = input("Co należy zrobić jak najszybciej, w pierwszej kolejności?: ")
+    recommendation = f"Pilne naprawy które należy wykonać jak najszybciej: {repair_fast}"
+    return recommendation
+
+def repair_long_func():
+    repair_in_time = input("Co należy naprawić przy następnym przeglądzie?: ")
+    recommendation = f"Przed następnym przeglądem należy naprawić: {repair_in_time}"
+    return recommendation
+
+def comment_func():
+    comments = input("Komentarz, dodatkowe informacje: ")
+    last_comment = f"Komentarz, dodatkowe informacje: {comments}"
+    return last_comment
+
 
 
 if __name__ == "__main__":
