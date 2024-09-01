@@ -1,5 +1,7 @@
 """Importing"""
 import datetime
+import openpyxl
+from xlutils.copy import copy
 
 
 class Client:
@@ -32,22 +34,25 @@ class Dates:
 
 def main():
     #client = client_name_func()
-    #print(f"{client}")
     #client_car = client_car_func()
-    #print(client_car)
     #all_dates = dates_func()
-    #print(all_dates)
     #car_checklist = checklist_func()
     #customer_todo = todo_func()
-    #print(customer_todo)
     #repaired = repaired_func()
-    #print(repaired)
     #repair_recommendation = repair_fast_func()
-    #print(repair_recommendation)
     #repair_in_long_time = repair_long_func()
-    #print(repair_in_long_time)
-    last_comments = comment_func()
-    print(last_comments)
+    #last_comments = comment_func()
+    #Load the report template
+    template = openpyxl.load_workbook(filename = "template.xlsx")
+    #Open first sheet
+    f_sheet = template.active
+    f_sheet["A1"] = "TEST ! ! !"
+    template.save(filename="New File.xlsx")
+
+#to do: rest of editing template + name of file
+
+
+
 
 
 def client_name_func():

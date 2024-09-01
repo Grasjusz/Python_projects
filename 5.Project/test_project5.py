@@ -21,7 +21,7 @@ def test():
     test_todo_func
     test_repaired_func
     test_repair_fast
-    test_repair_long()
+    test_repair_long
     test_comment_func
     
     
@@ -51,7 +51,7 @@ def test_checklist_func():
 
 def test_todo_func():
     """running pytest with -s and desired keys"""
-    customer_report = "brak sprzęgła"
+    customer_report = ["brak sprzęgła"]
     assert todo_func() == customer_report
     
 def test_repaired_func():
@@ -71,5 +71,5 @@ def test_repair_long():
 
 def test_comment_func():
     """running pytest with -s and desired inputs"""
-    comments = "Testowy koment"
+    comments = "testowy koment"
     assert comment_func() == f"Komentarz, dodatkowe informacje: {comments}"
