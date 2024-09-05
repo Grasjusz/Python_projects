@@ -27,15 +27,16 @@ class Dates:
         self.accept_date = accept_date
         self.end_date = end_date
     def combined_dates(accept_date, end_date):
-        accept_date = "Data przyjęcia pojazdu do naprawy: ", accept_date
-        end_date = "Data wydania pojazdu z naprawy: ", end_date
+        accept_date = accept_date
+        end_date = end_date
         return accept_date, end_date
 
 def main():
     client = client_name_func()
+    print(client, type(client))
     client_car = client_car_func()
-    print(client_car, type(client_car))
-    #all_dates = dates_func()
+    print(client_car)
+    all_dates = dates_func()
     #car_checklist = checklist_func()
     #customer_todo = todo_func()
     #repaired = repaired_func()
@@ -47,12 +48,27 @@ def main():
     #Open first sheet
     f_sheet = template.active
     #Insert data in proper columns/tables
-    f_sheet["A1"] = "TEST ! ! !"
+    """Inserting clients name"""
+    client = " ".join(client)
+    f_sheet["H6"] = client
+    """Inserting dates in columns"""
+    rows_date_a = ["H4", "C14"]
+    for row in rows_date_a:
+        f_sheet[row] = all_dates[0]
+    rows_date_b = ["H5", "D14"]
+    for row in rows_date_b:
+        f_sheet[row] = all_dates[1]
+    """Inserting car parameters"""
+    f_sheet["H7"] = client_car["Marka"]
+    f_sheet["H8"] = client_car["Rok"]
+    f_sheet["H9"] = client_car["Model"]
+    f_sheet["H10"] = client_car["VIN"]
+    f_sheet["H11"] = client_car["Numer rejestracji"]
     #Save document as new file with customer name and car model
-    file_name = f"{''.join(client)}{client_car['Marka']}{client_car['Model']}"
+    file_name = f"{client}-{client_car['Marka']}-{client_car['Model']}"
     template.save(filename=f"{file_name}.xlsx")
 
-#to do: rest of editing template
+#to do: all functions to excel and extend vehicles report in excel (template)
 
 
 
@@ -66,7 +82,7 @@ def client_name_func():
 def client_car_func():
     """Obtaining vehicle's detail"""
     while True:
-        car_param = {"Marka":"brak", "Model":"brak", "Rok":"brak", "Silnik":"brak", "VIN":"brak"}
+        car_param = {"Marka":"brak", "Model":"brak", "Rok":"brak", "Silnik":"brak", "Numer rejestracji":"brak", "VIN":"brak"}
         for key in car_param:
             value = input(f"Podaj {key}: ")
             if value:
