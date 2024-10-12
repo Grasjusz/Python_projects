@@ -37,7 +37,7 @@ def main():
     client_car = client_car_func()
     print(client_car)
     all_dates = dates_func()
-    #car_checklist = checklist_func()
+    car_checklist = checklist_func()
     #customer_todo = todo_func()
     #repaired = repaired_func()
     #repair_recommendation = repair_fast_func()
@@ -52,7 +52,7 @@ def main():
     client = " ".join(client)
     f_sheet["H6"] = client
     """Inserting dates in columns"""
-    rows_date_a = ["H4", "C14"]
+    rows_date_a = ["H4", "C14", "C19"]
     for row in rows_date_a:
         f_sheet[row] = all_dates[0]
     rows_date_b = ["H5", "D14"]
@@ -64,15 +64,27 @@ def main():
     f_sheet["H9"] = client_car["Model"]
     f_sheet["H10"] = client_car["VIN"]
     f_sheet["H11"] = client_car["Numer rejestracji"]
+    """Inserting fulfilling the checklist"""
+    f_sheet["C20"] = car_checklist["Zawieszenie"]
+    f_sheet["C21"] = car_checklist["Oświetlenie"]
+    f_sheet["C22"] = car_checklist["Klimatyzacja"]
+    f_sheet["C23"] = car_checklist["Silnik"]
+    f_sheet["C24"] = car_checklist["Koła"]
+    f_sheet["C25"] = car_checklist["Hamulce"]
+    f_sheet["C26"] = car_checklist["Nadwozie"]
+    f_sheet["C27"] = car_checklist["Podwozie"]
+    f_sheet["C28"] = car_checklist["Korozja"]
     #Save document as new file with customer name and car model
     file_name = f"{client}-{client_car['Marka']}-{client_car['Model']}"
     template.save(filename=f"{file_name}.xlsx")
 
+#TO REFINE: EXCEL template - make final
 #to do: all functions to excel and extend vehicles report in excel (template)
-
-
-
-
+#todo_func
+#repaired_func
+#repair_fast_func
+#repair_long_func
+#comment_func
 
 def client_name_func():
     """Obtaining client's detail"""
