@@ -38,7 +38,7 @@ def main():
     print(client_car)
     all_dates = dates_func()
     car_checklist = checklist_func()
-    #customer_todo = todo_func()
+    customer_todo = todo_func()
     #repaired = repaired_func()
     #repair_recommendation = repair_fast_func()
     #repair_in_long_time = repair_long_func()
@@ -74,6 +74,7 @@ def main():
     f_sheet["C26"] = car_checklist["Nadwozie"]
     f_sheet["C27"] = car_checklist["Podwozie"]
     f_sheet["C28"] = car_checklist["Korozja"]
+    f_sheet["C19"] = customer_todo
     #Save document as new file with customer name and car model
     file_name = f"{client}-{client_car['Marka']}-{client_car['Model']}"
     template.save(filename=f"{file_name}.xlsx")
