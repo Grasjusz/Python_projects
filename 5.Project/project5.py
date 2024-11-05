@@ -65,16 +65,27 @@ def main():
     f_sheet["H10"] = client_car["VIN"]
     f_sheet["H11"] = client_car["Numer rejestracji"]
     """Inserting fulfilling the checklist"""
-    f_sheet["C20"] = car_checklist["Zawieszenie"]
-    f_sheet["C21"] = car_checklist["Oświetlenie"]
-    f_sheet["C22"] = car_checklist["Klimatyzacja"]
-    f_sheet["C23"] = car_checklist["Silnik"]
-    f_sheet["C24"] = car_checklist["Koła"]
-    f_sheet["C25"] = car_checklist["Hamulce"]
-    f_sheet["C26"] = car_checklist["Nadwozie"]
-    f_sheet["C27"] = car_checklist["Podwozie"]
-    f_sheet["C28"] = car_checklist["Korozja"]
-    f_sheet["C19"] = customer_todo
+    f_sheet["C31"] = car_checklist["Zawieszenie"]
+    f_sheet["C32"] = car_checklist["Oświetlenie"]
+    f_sheet["C33"] = car_checklist["Klimatyzacja"]
+    f_sheet["C34"] = car_checklist["Silnik"]
+    f_sheet["C35"] = car_checklist["Koła"]
+    f_sheet["C36"] = car_checklist["Hamulce"]
+    f_sheet["C37"] = car_checklist["Nadwozie"]
+    f_sheet["C38"] = car_checklist["Podwozie"]
+    f_sheet["C39"] = car_checklist["Korozja"]
+    """Inserting customer to do list, depends of list length"""
+    row_cs_todo = 19
+    customer_todo_append = 0
+    while True:
+        f_sheet[f"C{row_cs_todo}"] = customer_todo[customer_todo_append]
+        row_cs_todo += 1
+        customer_todo_append += 1
+        print(row_cs_todo, customer_todo_append)
+        if customer_todo_append == len(customer_todo):
+            break
+#check code above if working properly
+
     #Save document as new file with customer name and car model
     file_name = f"{client}-{client_car['Marka']}-{client_car['Model']}"
     template.save(filename=f"{file_name}.xlsx")
