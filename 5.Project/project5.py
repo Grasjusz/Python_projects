@@ -39,7 +39,7 @@ def main():
     all_dates = dates_func()
     car_checklist = checklist_func()
     customer_todo = todo_func()
-    #repaired = repaired_func()
+    repaired = repaired_func()
     #repair_recommendation = repair_fast_func()
     #repair_in_long_time = repair_long_func()
     #last_comments = comment_func()
@@ -74,17 +74,28 @@ def main():
     f_sheet["C37"] = car_checklist["Nadwozie"]
     f_sheet["C38"] = car_checklist["Podwozie"]
     f_sheet["C39"] = car_checklist["Korozja"]
-    """Inserting customer to do list, depends of list length"""
+    """Inserting customer todo list, depends of list length"""
     row_cs_todo = 19
-    customer_todo_append = 0
+    customer_todo_count = 0
     while True:
-        f_sheet[f"C{row_cs_todo}"] = customer_todo[customer_todo_append]
+        f_sheet[f"C{row_cs_todo}"] = customer_todo[customer_todo_count]
         row_cs_todo += 1
-        customer_todo_append += 1
-        print(row_cs_todo, customer_todo_append)
-        if customer_todo_append == len(customer_todo):
+        customer_todo_count += 1
+        if customer_todo_count == len(customer_todo):
             break
-#check code above if working properly
+
+    """Inserting repaired service, depends of list length"""
+    while True:
+        row_repaired = 42
+        print(repaired, len(repaired), repaired.keys(), repaired.values())
+        for key, value in repaired:
+            f_sheet[f"B{row_repaired}"] = key
+            f_sheet[f"C{row_repaired}"] = value
+            row_repaired += 1
+        break
+
+#update above code
+
 
     #Save document as new file with customer name and car model
     file_name = f"{client}-{client_car['Marka']}-{client_car['Model']}"
@@ -92,7 +103,6 @@ def main():
 
 #TO REFINE: EXCEL template - make final
 #to do: all functions to excel and extend vehicles report in excel (template)
-#todo_func
 #repaired_func
 #repair_fast_func
 #repair_long_func
@@ -151,7 +161,7 @@ def checklist_func():
     return car_checklist
 
 def todo_func():
-    """"Inputing problems with car and asking if there is more"""
+    """Inputing problems with car and asking if there is more"""
     todo_list = []
     while True:
         customer_report = input("Awaria, naprawa zgłoszona przez klienta: ")
@@ -167,11 +177,12 @@ def todo_func():
 
 def repaired_func():
     """Inputing reapired items and asking if more"""
-    repaired_list = []
+    repaired_list = {}
     while True:
-        repaired_thing = input("Jakie naprawy zostały wykonane?: ")
-        repaired_list.append(repaired_thing)
-        next_repaired = input("Czy chcesz dodać kolejną rzecz?: y/n ").lower()
+        repaired_thing = input("Jaka naprawa została wykonana?: ")
+        repaired_cost = input("Jaka jest cena naprawy?: ")
+        repaired_list.update({repaired_thing:repaired_cost})
+        next_repaired = input("Czy chcesz dodać kolejną naprawę?: y/n ").lower()
         if next_repaired == "y":
             continue
         elif next_repaired != "n":
@@ -187,7 +198,7 @@ def repair_fast_func():
     return recommendation
 
 def repair_long_func():
-    """"Inputing recommendatiob for long term repair"""
+    """Inputing recommendatiob for long term repair"""
     repair_in_time = input("Co należy naprawić przy następnym przeglądzie?: ")
     recommendation = f"Przed następnym przeglądem należy naprawić: {repair_in_time}"
     return recommendation
