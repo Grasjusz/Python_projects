@@ -40,7 +40,7 @@ def main():
     car_checklist = checklist_func()
     customer_todo = todo_func()
     repaired = repaired_func()
-    #repair_recommendation = repair_fast_func()
+    repair_recommendation = repair_fast_func()
     #repair_in_long_time = repair_long_func()
     #last_comments = comment_func()
     #Load the report template
@@ -74,6 +74,7 @@ def main():
     f_sheet["C37"] = car_checklist["Nadwozie"]
     f_sheet["C38"] = car_checklist["Podwozie"]
     f_sheet["C39"] = car_checklist["Korozja"]
+
     """Inserting customer todo list, depends of list length"""
     row_cs_todo = 19
     customer_todo_count = 0
@@ -84,18 +85,17 @@ def main():
         if customer_todo_count == len(customer_todo):
             break
 
-    """Inserting repaired service, depends of list length"""
+    """Inserting repaired service and cost, depends of list length"""
     while True:
         row_repaired = 42
-        print(repaired, len(repaired), repaired.keys(), repaired.values())
-        for key, value in repaired:
+        for key, value in repaired.items():
             f_sheet[f"B{row_repaired}"] = key
             f_sheet[f"C{row_repaired}"] = value
             row_repaired += 1
         break
 
-#update above code
-
+    """Repair recommendation"""
+#repair recommendation to do next
 
     #Save document as new file with customer name and car model
     file_name = f"{client}-{client_car['Marka']}-{client_car['Model']}"
