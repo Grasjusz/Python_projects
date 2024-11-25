@@ -33,16 +33,14 @@ class Dates:
 
 def main():
     client = client_name_func()
-    print(client, type(client))
     client_car = client_car_func()
-    print(client_car)
     all_dates = dates_func()
     car_checklist = checklist_func()
     customer_todo = todo_func()
     repaired = repaired_func()
     repair_recommendation = repair_fast_func()
-    #repair_in_long_time = repair_long_func()
-    #last_comments = comment_func()
+    repair_in_long_time = repair_long_func()
+    last_comments = comment_func()
     #Load the report template
     template = openpyxl.load_workbook(filename = "template.xlsx")
     #Open first sheet
@@ -65,15 +63,15 @@ def main():
     f_sheet["H10"] = client_car["VIN"]
     f_sheet["H11"] = client_car["Numer rejestracji"]
     """Inserting fulfilling the checklist"""
-    f_sheet["C31"] = car_checklist["Zawieszenie"]
-    f_sheet["C32"] = car_checklist["Oświetlenie"]
-    f_sheet["C33"] = car_checklist["Klimatyzacja"]
-    f_sheet["C34"] = car_checklist["Silnik"]
-    f_sheet["C35"] = car_checklist["Koła"]
-    f_sheet["C36"] = car_checklist["Hamulce"]
-    f_sheet["C37"] = car_checklist["Nadwozie"]
-    f_sheet["C38"] = car_checklist["Podwozie"]
-    f_sheet["C39"] = car_checklist["Korozja"]
+    f_sheet["C40"] = car_checklist["Zawieszenie"]
+    f_sheet["C41"] = car_checklist["Oświetlenie"]
+    f_sheet["C42"] = car_checklist["Klimatyzacja"]
+    f_sheet["C43"] = car_checklist["Silnik"]
+    f_sheet["C44"] = car_checklist["Koła"]
+    f_sheet["C45"] = car_checklist["Hamulce"]
+    f_sheet["C46"] = car_checklist["Nadwozie"]
+    f_sheet["C47"] = car_checklist["Podwozie"]
+    f_sheet["C48"] = car_checklist["Korozja"]
 
     """Inserting customer todo list, depends of list length"""
     row_cs_todo = 19
@@ -87,7 +85,7 @@ def main():
 
     """Inserting repaired service and cost, depends of list length"""
     while True:
-        row_repaired = 42
+        row_repaired = 51
         for key, value in repaired.items():
             f_sheet[f"B{row_repaired}"] = key
             f_sheet[f"C{row_repaired}"] = value
@@ -95,18 +93,21 @@ def main():
         break
 
     """Repair recommendation"""
-#repair recommendation to do next
+    #Things to repair as fast as possible
+    f_sheet["C66"] = repair_recommendation
+    #Things good to repair before next audit
+    f_sheet["C70"] = repair_in_long_time
+
+    """Comments, informations etc. section"""
+    f_sheet["C74"] = last_comments
+
+    #Add mileage to client_car[C15]
+    #Add service date [C14]
+    #Add mechanism that fill up next column after another repair
 
     #Save document as new file with customer name and car model
     file_name = f"{client}-{client_car['Marka']}-{client_car['Model']}"
     template.save(filename=f"{file_name}.xlsx")
-
-#TO REFINE: EXCEL template - make final
-#to do: all functions to excel and extend vehicles report in excel (template)
-#repaired_func
-#repair_fast_func
-#repair_long_func
-#comment_func
 
 def client_name_func():
     """Obtaining client's detail"""
