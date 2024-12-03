@@ -50,10 +50,10 @@ def main():
     client = " ".join(client)
     f_sheet["H6"] = client
     """Inserting dates in columns"""
-    rows_date_a = ["H4", "C14", "C19"]
+    rows_date_a = ["H4", "C19"]
     for row in rows_date_a:
         f_sheet[row] = all_dates[0]
-    rows_date_b = ["H5", "D14"]
+    rows_date_b = ["H5", "D14", "C14"]
     for row in rows_date_b:
         f_sheet[row] = all_dates[1]
     """Inserting car parameters"""
@@ -62,6 +62,7 @@ def main():
     f_sheet["H9"] = client_car["Model"]
     f_sheet["H10"] = client_car["VIN"]
     f_sheet["H11"] = client_car["Numer rejestracji"]
+    f_sheet["C15"] = client_car["Przebieg"]
     """Inserting fulfilling the checklist"""
     f_sheet["C40"] = car_checklist["Zawieszenie"]
     f_sheet["C41"] = car_checklist["Oświetlenie"]
@@ -101,8 +102,6 @@ def main():
     """Comments, informations etc. section"""
     f_sheet["C74"] = last_comments
 
-    #Add mileage to client_car[C15]
-    #Add service date [C14]
     #Add mechanism that fill up next column after another repair
 
     #Save document as new file with customer name and car model
@@ -117,7 +116,7 @@ def client_name_func():
 def client_car_func():
     """Obtaining vehicle's detail"""
     while True:
-        car_param = {"Marka":"brak", "Model":"brak", "Rok":"brak", "Silnik":"brak", "Numer rejestracji":"brak", "VIN":"brak"}
+        car_param = {"Marka":"brak", "Model":"brak", "Rok":"brak", "Silnik":"brak", "Numer rejestracji":"brak", "VIN":"brak", "Przebieg":"brak"}
         for key in car_param:
             value = input(f"Podaj {key}: ")
             if value:
