@@ -9,7 +9,8 @@ todo_func,
 repaired_func,
 repair_fast_func,
 repair_long_func,
-comment_func
+comment_func,
+new_column_func
 )
 
 
@@ -23,6 +24,7 @@ def test():
     test_repair_fast
     test_repair_long
     test_comment_func
+    test_new_column_func
     
     
 def test_client_name():
@@ -73,3 +75,7 @@ def test_comment_func():
     """running pytest with -s and desired inputs"""
     comments = "testowy koment"
     assert comment_func() == f"Komentarz, dodatkowe informacje: {comments}"
+
+def test_new_column_func():
+    """running pytest with -s and desired inputs"""
+    new_column_func()

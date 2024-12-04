@@ -1,6 +1,7 @@
 """Importing"""
 import datetime
 import openpyxl
+import glob
 
 
 class Client:
@@ -103,10 +104,17 @@ def main():
     f_sheet["C74"] = last_comments
 
     #Add mechanism that fill up next column after another repair
+    #continue new_column_func
 
     #Save document as new file with customer name and car model
     file_name = f"{client}-{client_car['Marka']}-{client_car['Model']}"
     template.save(filename=f"{file_name}.xlsx")
+
+def new_column_func():
+    client_path = glob.glob('**/*.txt', recursive = True)
+    new_column = input("Czy nowy klient? (y/n)")
+    another_column = input(f"Wybierz klienta z listy: {client_path}")
+
 
 def client_name_func():
     """Obtaining client's detail"""
