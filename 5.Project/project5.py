@@ -111,9 +111,21 @@ def main():
     template.save(filename=f"{file_name}.xlsx")
 
 def new_column_func():
+    columns = ["c", "d", "e", "f", "g", "h"]
     client_path = glob.glob('**/*.txt', recursive = True)
-    new_column = input("Czy nowy klient? (y/n)")
-    another_column = input(f"Wybierz klienta z listy: {client_path}")
+    new_column = input("Czy nowy klient? (y/n)").lower()
+    if new_column in  ["n", "nie", "not"]:
+
+        for numb in client_path:
+            #another_column = input(f"Wybierz klienta z listy: {numb}")
+            print(numb)
+
+
+        #if another_column == client_path:
+            #to use #next() method
+            #return
+    else:
+        pass
 
 
 def client_name_func():
