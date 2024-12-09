@@ -27,7 +27,7 @@ class Dates:
     def __init__(self, accept_date, end_date):
         self.accept_date = accept_date
         self.end_date = end_date
-    def combined_dates(accept_date, end_date):
+    def combined_dates(self, accept_date, end_date):
         accept_date = accept_date
         end_date = end_date
         return accept_date, end_date
@@ -115,10 +115,18 @@ def new_column_func():
     client_path = glob.glob('**/*.txt', recursive = True)
     new_column = input("Czy nowy klient? (y/n)").lower()
     if new_column in  ["n", "nie", "not"]:
-
-        for numb in client_path:
-            #another_column = input(f"Wybierz klienta z listy: {numb}")
-            print(numb)
+        print(f"Wybierz klienta z listy:")
+        order = 1
+        book = {}
+        for file in client_path:
+            print(f"{order}.{file}")
+            book.update({order:file})
+            order += 1
+        another_column = int(input(f"Wpisz numer klienta z listy: "))
+        if another_column in book.keys():
+            input("is it")
+        else:
+            print("Scheisse")
 
 
         #if another_column == client_path:
