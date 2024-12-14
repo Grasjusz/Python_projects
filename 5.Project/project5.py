@@ -123,17 +123,16 @@ def new_column_func():
             book.update({order:file})
             order += 1
         another_column = int(input(f"Wpisz numer klienta z listy: "))
-        if another_column in book.keys():
-            input("is it")
-        else:
-            print("Scheisse")
-
-
-        #if another_column == client_path:
-            #to use #next() method
-            #return
+        for ordered_numb, client_file in book.items():
+            if ordered_numb == another_column:
+                print(f"client: {client_file}")
+                #start here!!
     else:
-        pass
+        print("Error occured!")
+
+
+        #TODO last loop for to refine
+            #return - too
 
 
 def client_name_func():
