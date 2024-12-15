@@ -103,16 +103,13 @@ def main():
     """Comments, informations etc. section"""
     f_sheet["C74"] = last_comments
 
-    #Add mechanism that fill up next column after another repair
-    #continue new_column_func
-
     #Save document as new file with customer name and car model
     file_name = f"{client}-{client_car['Marka']}-{client_car['Model']}"
     template.save(filename=f"{file_name}.xlsx")
 
 def new_column_func():
     columns = ["c", "d", "e", "f", "g", "h"]
-    client_path = glob.glob('**/*.txt', recursive = True)
+    client_path = glob.glob('**/*.xlsx', recursive = True)
     new_column = input("Czy nowy klient? (y/n)").lower()
     if new_column in  ["n", "nie", "not"]:
         print(f"Wybierz klienta z listy:")
@@ -123,16 +120,25 @@ def new_column_func():
             book.update({order:file})
             order += 1
         another_column = int(input(f"Wpisz numer klienta z listy: "))
-        for ordered_numb, client_file in book.items():
+        for ordered_numb, client_dir in book.items():
             if ordered_numb == another_column:
-                print(f"client: {client_file}")
-                #start here!!
+                print(f"client: {client_dir}")
+                client_file = client_dir.split("/")
+                file_name_path = client_file[1]
+                old_client = openpyxl.load_workbook(filename = file_name_path)
+                # Open first sheet
+                f_sheet = old_client.active
+                # Insert data in proper columns/tables
+                f_sheet["H6"] = "Hello test"
+                # Save document as update file
+######################################################ERROR
+                update_name = f"\\{client_dir}"
+                old_client.save(filename=f"{update_name}.xlsx")
     else:
         print("Error occured!")
 
 
-        #TODO last loop for to refine
-            #return - too
+        #TODO opening and saving document - path error
 
 
 def client_name_func():
