@@ -136,7 +136,8 @@ def new_column_func():
         print("Error occured!")
 
 
-        #TODO next things to fullfill next column
+        #TODO next things to fullfill next columns, check which column is free and use it.
+        #TODO Make new column func and main with openpyxl in another smallers functions/classes - no big code blocks!
 
 
 def client_name_func():
