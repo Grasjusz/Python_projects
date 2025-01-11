@@ -2,6 +2,7 @@
 import datetime
 import openpyxl
 import glob
+from openpyxl import load_workbook
 
 
 class Client:
@@ -123,17 +124,16 @@ def new_column_func():
         for ordered_numb, client_dir in book.items():
             if ordered_numb == another_column:
                 print(f"client: {client_dir}")
-                client_file = client_dir.split("/")
-                file_name_path = client_file[1]
-                old_client = openpyxl.load_workbook(filename = file_name_path)
+                #client_file = client_dir.split("/")
+                #file_name_path = client_file[1]
+                old_client = load_workbook(client_dir, read_only = False)
                 # Open first sheet
                 f_sheet = old_client.active
                 # Insert data in proper columns/tables
                 f_sheet["H6"] = "Hello test"
                 # Save document as update file
-######################################################ERROR
-                update_name = f"\\{client_dir}"
-                old_client.save(filename=f"{update_name}.xlsx")
+                update_name = f"{client_dir}"
+                old_client.save(filename=f"{update_name}")
     else:
         print("Error occured!")
 
