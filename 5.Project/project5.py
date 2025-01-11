@@ -44,7 +44,7 @@ def main():
     repair_in_long_time = repair_long_func()
     last_comments = comment_func()
     #Load the report template
-    template = openpyxl.load_workbook(filename = "template.xlsx")
+    template = openpyxl.load_workbook(filename = "template.xlsx", read_only = False)
     #Open first sheet
     f_sheet = template.active
     #Insert data in proper columns/tables
@@ -120,25 +120,23 @@ def new_column_func():
             print(f"{order}.{file}")
             book.update({order:file})
             order += 1
-        another_column = int(input(f"Wpisz numer klienta z listy: "))
+        chosen_client_file = int(input(f"Wpisz numer klienta z listy: "))
         for ordered_numb, client_dir in book.items():
-            if ordered_numb == another_column:
+            if ordered_numb == chosen_client_file:
                 print(f"client: {client_dir}")
-                #client_file = client_dir.split("/")
-                #file_name_path = client_file[1]
                 old_client = load_workbook(client_dir, read_only = False)
                 # Open first sheet
                 f_sheet = old_client.active
                 # Insert data in proper columns/tables
                 f_sheet["H6"] = "Hello test"
                 # Save document as update file
-                update_name = f"{client_dir}"
-                old_client.save(filename=f"{update_name}")
+                old_file_name= f"{client_dir}"
+                old_client.save(filename=f"{old_file_name}")
     else:
         print("Error occured!")
 
 
-        #TODO opening and saving document - path error
+        #TODO next things to fullfill next column
 
 
 def client_name_func():
