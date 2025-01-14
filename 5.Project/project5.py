@@ -34,6 +34,14 @@ class Dates:
         return accept_date, end_date
 
 def main():
+    """Check if new or old client and handle it."""
+    old_or_new = old_or_new_client_func()
+    if old_or_new is True:
+        new_client_func() #Todo function with generating new file
+    elif old_or_new is False:
+        old_client_file_path = getting_old_client_file_func()
+        old_client_new_repair_func(old_client_file_path)
+
     client = client_name_func()
     client_car = client_car_func()
     all_dates = dates_func()
@@ -108,32 +116,47 @@ def main():
     file_name = f"{client}-{client_car['Marka']}-{client_car['Model']}"
     template.save(filename=f"{file_name}.xlsx")
 
-def new_column_func():
-    columns = ["c", "d", "e", "f", "g", "h"]
-    client_path = glob.glob('**/*.xlsx', recursive = True)
+"""Check if new or old client()"""
+def old_or_new_client_func():
     new_column = input("Czy nowy klient? (y/n)").lower()
     if new_column in  ["n", "nie", "not"]:
-        print(f"Wybierz klienta z listy:")
-        order = 1
-        book = {}
-        for file in client_path:
-            print(f"{order}.{file}")
-            book.update({order:file})
-            order += 1
-        chosen_client_file = int(input(f"Wpisz numer klienta z listy: "))
-        for ordered_numb, client_dir in book.items():
-            if ordered_numb == chosen_client_file:
-                print(f"client: {client_dir}")
-                old_client = load_workbook(client_dir, read_only = False)
-                # Open first sheet
-                f_sheet = old_client.active
-                # Insert data in proper columns/tables
-                f_sheet["H6"] = "Hello test"
-                # Save document as update file
-                old_file_name= f"{client_dir}"
-                old_client.save(filename=f"{old_file_name}")
+        return False
     else:
-        print("Error occured!")
+        return True
+
+"""If old client, get old file report and return path to file"""
+def getting_old_client_file_func():
+    client_path = glob.glob('**/*.xlsx', recursive = True)
+    print(f"Wybierz klienta z listy:")
+    order = 1
+    book = {}
+    for file in client_path:
+        print(f"{order}.{file}")
+        book.update({order: file})
+        order += 1
+    chosen_client_file = int(input(f"Wpisz numer klienta z listy: "))
+    for ordered_numb, client_dir in book.items():
+        if ordered_numb == chosen_client_file:
+            print(f"client: {client_dir}")
+            return client_dir
+
+"""Insert informations to report"""
+def old_client_new_repair_func(client_dir):
+    old_client = load_workbook(client_dir, read_only=False)
+    # Open first sheet
+    f_sheet = old_client.active
+    # Insert data in proper columns/tables
+    f_sheet["H6"] = "Hello test"
+    # Save document as update file
+    old_file_name = f"{client_dir}"
+    old_client.save(filename=f"{old_file_name}")
+
+"""Handle which column is free and fill it up"""
+def which_column_func():
+    columns = ["c", "d", "e", "f", "g", "h"]
+    wb = load_workbook("file.xlsx", data_only=True)
+    sh = wb["Sheet_name"]
+    print(sh["x10"].value)
 
 
         #TODO next things to fullfill next columns, check which column is free and use it.
