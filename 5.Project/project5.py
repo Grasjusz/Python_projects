@@ -3,6 +3,7 @@ import datetime
 import openpyxl
 import glob
 from openpyxl import load_workbook
+import excel_editor
 
 
 class Client:
@@ -24,97 +25,14 @@ class ClientCar:
         self.engine = engine
         self.vin = vin
 
-class Dates:
-    def __init__(self, accept_date, end_date):
-        self.accept_date = accept_date
-        self.end_date = end_date
-    def combined_dates(self, accept_date, end_date):
-        accept_date = accept_date
-        end_date = end_date
-        return accept_date, end_date
-
 def main():
     """Check if new or old client and handle it."""
     old_or_new = old_or_new_client_func()
     if old_or_new is True:
-        new_client_func() #Todo function with generating new file
+        excel_editor.main_excel() #Todo working for now external file with handling excel file
     elif old_or_new is False:
         old_client_file_path = getting_old_client_file_func()
         old_client_new_repair_func(old_client_file_path)
-
-    client = client_name_func()
-    client_car = client_car_func()
-    all_dates = dates_func()
-    car_checklist = checklist_func()
-    customer_todo = todo_func()
-    repaired = repaired_func()
-    repair_recommendation = repair_fast_func()
-    repair_in_long_time = repair_long_func()
-    last_comments = comment_func()
-    #Load the report template
-    template = openpyxl.load_workbook(filename = "template.xlsx", read_only = False)
-    #Open first sheet
-    f_sheet = template.active
-    #Insert data in proper columns/tables
-    """Inserting clients name"""
-    client = " ".join(client)
-    f_sheet["H6"] = client
-    """Inserting dates in columns"""
-    rows_date_a = ["H4", "C19"]
-    for row in rows_date_a:
-        f_sheet[row] = all_dates[0]
-    rows_date_b = ["H5", "D14", "C14"]
-    for row in rows_date_b:
-        f_sheet[row] = all_dates[1]
-    """Inserting car parameters"""
-    f_sheet["H7"] = client_car["Marka"]
-    f_sheet["H8"] = client_car["Rok"]
-    f_sheet["H9"] = client_car["Model"]
-    f_sheet["H10"] = client_car["VIN"]
-    f_sheet["H11"] = client_car["Numer rejestracji"]
-    f_sheet["C15"] = client_car["Przebieg"]
-    """Inserting fulfilling the checklist"""
-    f_sheet["C40"] = car_checklist["Zawieszenie"]
-    f_sheet["C41"] = car_checklist["Oświetlenie"]
-    f_sheet["C42"] = car_checklist["Klimatyzacja"]
-    f_sheet["C43"] = car_checklist["Silnik"]
-    f_sheet["C44"] = car_checklist["Koła"]
-    f_sheet["C45"] = car_checklist["Hamulce"]
-    f_sheet["C46"] = car_checklist["Nadwozie"]
-    f_sheet["C47"] = car_checklist["Podwozie"]
-    f_sheet["C48"] = car_checklist["Korozja"]
-
-    """Inserting customer todo list, depends of list length"""
-    row_cs_todo = 19
-    customer_todo_count = 0
-    while True:
-        f_sheet[f"C{row_cs_todo}"] = customer_todo[customer_todo_count]
-        row_cs_todo += 1
-        customer_todo_count += 1
-        if customer_todo_count == len(customer_todo):
-            break
-
-    """Inserting repaired service and cost, depends of list length"""
-    while True:
-        row_repaired = 51
-        for key, value in repaired.items():
-            f_sheet[f"B{row_repaired}"] = key
-            f_sheet[f"C{row_repaired}"] = value
-            row_repaired += 1
-        break
-
-    """Repair recommendation"""
-    #Things to repair as fast as possible
-    f_sheet["C66"] = repair_recommendation
-    #Things good to repair before next audit
-    f_sheet["C70"] = repair_in_long_time
-
-    """Comments, informations etc. section"""
-    f_sheet["C74"] = last_comments
-
-    #Save document as new file with customer name and car model
-    file_name = f"{client}-{client_car['Marka']}-{client_car['Model']}"
-    template.save(filename=f"{file_name}.xlsx")
 
 """Check if new or old client()"""
 def old_or_new_client_func():
@@ -123,6 +41,9 @@ def old_or_new_client_func():
         return False
     else:
         return True
+
+def new_client_func():
+    pass
 
 """If old client, get old file report and return path to file"""
 def getting_old_client_file_func():
@@ -189,15 +110,13 @@ def dates_func():
             date_format = "%d.%m.%Y"
             accept_date = input("Data przyjęcia pojazdu DD.MM.RRRR: ")
             accept_date = datetime.datetime.strptime(accept_date, date_format)
-            accept_date_new = datetime.datetime.strftime(accept_date, date_format)
             end_date = input("Data wydania pojazdu DD.MM.RRRR: ")
             end_date = datetime.datetime.strptime(end_date, date_format)
-            end_date_new = datetime.datetime.strftime(end_date, date_format)
         except ValueError:
             print("Niepoprawny format daty, prawidłowy format: DD.MM.RRRR")
             continue
         break
-    return Dates.combined_dates(accept_date_new, end_date_new)
+    return accept_date, end_date
 
 def checklist_func():
     """Checklist after car verification"""
