@@ -3,6 +3,7 @@ import datetime
 import openpyxl
 import glob
 from openpyxl import load_workbook
+from openpyxl.utils import get_column_letter
 import excel_editor
 
 
@@ -31,7 +32,7 @@ def main():
     if old_or_new is True:
         excel_editor.main_excel()
     elif old_or_new is False:
-        which_column_func() #TODO refine iterating through column in row 14
+        which_column_func() #TODO checking the columns
         old_client_file_path = getting_old_client_file_func()
         old_client_new_repair_func(old_client_file_path)
 
@@ -75,11 +76,20 @@ def old_client_new_repair_func(client_dir):
 
 """Handle which column is free and fill it up"""
 def which_column_func():
-    columns = ["c", "d", "e", "f", "g", "h"]
+    columns = dict(C=" ", D=" ", E=" ", F=" ", G=" ", H=" ")
     wb = load_workbook("test_file.xlsx", data_only=True)
     sh = wb.active
-    for row in sh.iter_rows():
-        print(row["14"].value) #TODO refine iterating through column in row 14
+    start_col = 2  # 'C' column index
+    end_col = 7  # 'L' column index
+    for i in range(14, 15):
+        row = [cell.value for cell in sh[i][start_col:end_col + 1]]
+        print(row)
+
+    counter = 0                         #TODO checking the columns, for now the dict is working properly - check it
+    for key, value in columns.items():
+        columns.update({key:row[counter]})
+        counter += 1
+    print(columns)
 
 
         #TODO next things to fullfill next columns, check which column is free and use it.
