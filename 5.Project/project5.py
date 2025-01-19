@@ -29,8 +29,9 @@ def main():
     """Check if new or old client and handle it."""
     old_or_new = old_or_new_client_func()
     if old_or_new is True:
-        excel_editor.main_excel() #Todo working for now external file with handling excel file
+        excel_editor.main_excel()
     elif old_or_new is False:
+        which_column_func() #TODO refine iterating through column in row 14
         old_client_file_path = getting_old_client_file_func()
         old_client_new_repair_func(old_client_file_path)
 
@@ -75,9 +76,10 @@ def old_client_new_repair_func(client_dir):
 """Handle which column is free and fill it up"""
 def which_column_func():
     columns = ["c", "d", "e", "f", "g", "h"]
-    wb = load_workbook("file.xlsx", data_only=True)
-    sh = wb["Sheet_name"]
-    print(sh["x10"].value)
+    wb = load_workbook("test_file.xlsx", data_only=True)
+    sh = wb.active
+    for row in sh.iter_rows():
+        print(row["14"].value) #TODO refine iterating through column in row 14
 
 
         #TODO next things to fullfill next columns, check which column is free and use it.
