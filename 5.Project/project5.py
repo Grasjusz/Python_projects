@@ -3,7 +3,6 @@ import datetime
 import openpyxl
 import glob
 from openpyxl import load_workbook
-from openpyxl.utils import get_column_letter
 import excel_editor
 
 
@@ -32,9 +31,9 @@ def main():
     if old_or_new is True:
         excel_editor.main_excel()
     elif old_or_new is False:
-        which_column_func() #TODO checking the columns
         old_client_file_path = getting_old_client_file_func()
         old_client_new_repair_func(old_client_file_path)
+        which_column_func(old_client_file_path)#TODO checking the columns
 
 """Check if new or old client()"""
 def old_or_new_client_func():
@@ -75,16 +74,17 @@ def old_client_new_repair_func(client_dir):
     old_client.save(filename=f"{old_file_name}")
 
 """Handle which column is free and fill it up"""
-def which_column_func():
+def which_column_func(client_dir):
     columns = dict(C=" ", D=" ", E=" ", F=" ", G=" ", H=" ")
-    wb = load_workbook("test_file.xlsx", data_only=True)
-    sh = wb.active
+    wb = load_workbook(client_dir, data_only=True)
+    f_sheet = wb.active
     start_col = 2  # 'C' column index
-    end_col = 7  # 'L' column index
+    end_col = 7  # 'H' column index
+    """Read all values from cells from row and add to list"""
     for i in range(14, 15):
-        row = [cell.value for cell in sh[i][start_col:end_col + 1]]
+        row = [cell.value for cell in f_sheet[i][start_col:end_col + 1]]
         print(row)
-
+    """Add to dictionary value to specified column"""
     counter = 0                         #TODO checking the columns, for now the dict is working properly - check it
     for key, value in columns.items():
         columns.update({key:row[counter]})
