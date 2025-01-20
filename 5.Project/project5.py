@@ -92,6 +92,7 @@ def which_column_func(client_dir):
     print(columns)
 
 
+
         #TODO next things to fullfill next columns, check which column is free and use it.
         #TODO Make new column func and main with openpyxl in another smallers functions/classes - no big code blocks!
 
