@@ -35,6 +35,7 @@ def main():
         old_client_new_repair_func(old_client_file_path)
         which_column_func(old_client_file_path)#TODO checking the columns
 
+
 """Check if new or old client()"""
 def old_or_new_client_func():
     new_column = input("Czy nowy klient? (y/n)").lower()
@@ -83,16 +84,20 @@ def which_column_func(client_dir):
     """Read all values from cells from row and add to list"""
     for i in range(14, 15):
         row = [cell.value for cell in f_sheet[i][start_col:end_col + 1]]
-        print(row)
     """Add to dictionary value to specified column"""
-    counter = 0                         #TODO checking the columns, for now the dict is working properly - check it
+    counter = 0
     for key, value in columns.items():
         columns.update({key:row[counter]})
         counter += 1
-    print(columns)
+    free_column_func(columns)
 
+#todo return first free letter from list
+def free_column_func(columns):
+    for key, value in columns.items():
+        if value != None:
+            print(key)
 
-
+        #TODO make variable for column letter
         #TODO next things to fullfill next columns, check which column is free and use it.
         #TODO Make new column func and main with openpyxl in another smallers functions/classes - no big code blocks!
 

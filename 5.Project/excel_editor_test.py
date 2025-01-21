@@ -32,10 +32,10 @@ def main_excel():
     client = " ".join(client)
     f_sheet["H6"] = client
     """Inserting dates in columns"""
-    rows_date_a = ["H4"]
+    rows_date_a = ["H4", "C19"]
     for row in rows_date_a:
         f_sheet[row] = all_dates[0]
-    rows_date_b = ["H5", "C14"]
+    rows_date_b = ["H5", "D14", "C14"]
     for row in rows_date_b:
         f_sheet[row] = all_dates[1]
     """Inserting car parameters"""
