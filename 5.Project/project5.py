@@ -33,7 +33,7 @@ def main():
     elif old_or_new is False:
         old_client_file_path = getting_old_client_file_func()
         old_client_new_repair_func(old_client_file_path)
-        which_column_func(old_client_file_path)#TODO checking the columns
+        which_column_func(old_client_file_path)
 
 
 """Check if new or old client()"""
@@ -91,13 +91,15 @@ def which_column_func(client_dir):
         counter += 1
     free_column_func(columns)
 
-#todo return first free letter from list
+"""Check columns for free space and return first free column to use"""
 def free_column_func(columns):
+    col_letter_list = list()
     for key, value in columns.items():
-        if value != None:
-            print(key)
+        if value is None:
+            col_letter_list += key
+    return col_letter_list[0]
 
-        #TODO make variable for column letter
+        #TODO transfer the free column letter from fee_column_func to excel editor and change columns to write
         #TODO next things to fullfill next columns, check which column is free and use it.
         #TODO Make new column func and main with openpyxl in another smallers functions/classes - no big code blocks!
 

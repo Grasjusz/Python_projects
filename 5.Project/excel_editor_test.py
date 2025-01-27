@@ -10,6 +10,7 @@ from project5 import(
     repair_fast_func,
     repair_long_func,
     comment_func,
+    free_column_func,
 )
 
 def main_excel():
@@ -22,6 +23,9 @@ def main_excel():
     repair_recommendation = repair_fast_func()
     repair_in_long_time = repair_long_func()
     last_comments = comment_func()
+    free_column = free_column_func()
+
+
 
     # Load the report template
     template = openpyxl.load_workbook(filename="template.xlsx", read_only=False)
@@ -38,6 +42,8 @@ def main_excel():
     rows_date_b = ["H5", "D14", "C14"]
     for row in rows_date_b:
         f_sheet[row] = all_dates[1]
+
+
     """Inserting car parameters"""
     f_sheet["H7"] = client_car["Marka"]
     f_sheet["H8"] = client_car["Rok"]
