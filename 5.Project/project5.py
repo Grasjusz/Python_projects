@@ -31,9 +31,15 @@ def main():
     if old_or_new is True:
         excel_editor.main_excel()
     elif old_or_new is False:
+        """Importing inside function"""
+        import excel_editor_test
         old_client_file_path = getting_old_client_file_func()
         old_client_new_repair_func(old_client_file_path)
-        which_column_func(old_client_file_path)
+        columns = which_column_func(old_client_file_path)
+        column_letter = free_column_func(columns)
+        excel_editor_test.test(column_letter)#todo refine working on engine with returning letter..
+                                            #todo ..and working on moving the columns to fill rows
+                                            #todo in excel_editor_test
 
 
 """Check if new or old client()"""
@@ -89,15 +95,21 @@ def which_column_func(client_dir):
     for key, value in columns.items():
         columns.update({key:row[counter]})
         counter += 1
-    free_column_func(columns)
+    return columns
 
 """Check columns for free space and return first free column to use"""
 def free_column_func(columns):
-    col_letter_list = list()
-    for key, value in columns.items():
-        if value is None:
-            col_letter_list += key
-    return col_letter_list[0]
+    try:
+        col_letter_list = list()
+        for key, value in columns.items():
+            if value is None:
+                col_letter_list += key
+        return col_letter_list[0]
+    except (Exception,):
+        return "Plik jest zapełniony!"
+
+
+
 
         #TODO transfer the free column letter from fee_column_func to excel editor and change columns to write
         #TODO next things to fullfill next columns, check which column is free and use it.

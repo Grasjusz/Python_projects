@@ -10,7 +10,6 @@ from project5 import(
     repair_fast_func,
     repair_long_func,
     comment_func,
-    free_column_func,
 )
 
 def main_excel():
@@ -23,7 +22,6 @@ def main_excel():
     repair_recommendation = repair_fast_func()
     repair_in_long_time = repair_long_func()
     last_comments = comment_func()
-    free_column = free_column_func()
 
 
 
@@ -93,6 +91,11 @@ def main_excel():
     # Save document as new file with customer name and car model
     file_name = f"{client}-{client_car['Marka']}-{client_car['Model']}"
     template.save(filename=f"{file_name}.xlsx")
+
+def test(letter):
+    used_letter = letter
+    print(f"uzywana litera: {used_letter}")
+    return used_letter
 
 if __name__ == "__main_excel__":
     main_excel()
