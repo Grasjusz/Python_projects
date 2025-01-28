@@ -12,6 +12,7 @@ from project5 import(
     comment_func,
 )
 
+
 def main_excel():
     client = client_name_func()
     client_car = client_car_func()
@@ -22,7 +23,6 @@ def main_excel():
     repair_recommendation = repair_fast_func()
     repair_in_long_time = repair_long_func()
     last_comments = comment_func()
-
 
 
     # Load the report template
@@ -41,7 +41,7 @@ def main_excel():
     for row in rows_date_b:
         f_sheet[row] = all_dates[1]
 
-
+    print()
     """Inserting car parameters"""
     f_sheet["H7"] = client_car["Marka"]
     f_sheet["H8"] = client_car["Rok"]
@@ -92,7 +92,9 @@ def main_excel():
     file_name = f"{client}-{client_car['Marka']}-{client_car['Model']}"
     template.save(filename=f"{file_name}.xlsx")
 
-def test(letter):
+used_letter = list()
+
+def free_column_letter(letter):
     used_letter = letter
     print(f"uzywana litera: {used_letter}")
     return used_letter

@@ -31,16 +31,15 @@ def main():
     if old_or_new is True:
         excel_editor.main_excel()
     elif old_or_new is False:
-        """Importing inside function"""
+        """Importing inside function to prevent errors"""
         import excel_editor_test
         old_client_file_path = getting_old_client_file_func()
         old_client_new_repair_func(old_client_file_path)
         columns = which_column_func(old_client_file_path)
         column_letter = free_column_func(columns)
-        excel_editor_test.test(column_letter)#todo refine working on engine with returning letter..
+        excel_editor_test.free_column_letter(column_letter)#todo refine working on engine with returning letter..
                                             #todo ..and working on moving the columns to fill rows
                                             #todo in excel_editor_test
-
 
 """Check if new or old client()"""
 def old_or_new_client_func():
@@ -214,8 +213,6 @@ def comment_func():
     comments = input("Komentarz, dodatkowe informacje: ")
     last_comment = f"Komentarz, dodatkowe informacje: {comments}"
     return last_comment
-
-
 
 if __name__ == "__main__":
     main()
