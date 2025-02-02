@@ -25,6 +25,7 @@ class ClientCar:
         self.engine = engine
         self.vin = vin
 
+
 def main():
     """Check if new or old client and handle it."""
     old_or_new = old_or_new_client_func()
@@ -33,13 +34,20 @@ def main():
     elif old_or_new is False:
         """Importing inside function to prevent errors"""
         import excel_editor_test
-        old_client_file_path = getting_old_client_file_func()
-        old_client_new_repair_func(old_client_file_path)
-        columns = which_column_func(old_client_file_path)
-        column_letter = free_column_func(columns)
-        excel_editor_test.free_column_letter(column_letter)#todo refine working on engine with returning letter..
-                                            #todo ..and working on moving the columns to fill rows
-                                            #todo in excel_editor_test
+        excel_editor_test.test()
+
+                                                        #todo refine working on engine with returning letter..
+                                                        #todo ..and working on moving the columns to fill rows
+                                                        #todo in excel_editor_test
+                                                        #todo split generating file search / returning letter
+                                                        #todo ..in another funcs
+
+"""Function to aggregate all funcs to return free column letter"""
+def run():
+    old_client_file_path = getting_old_client_file_func()
+    old_client_new_repair_func(old_client_file_path)
+    columns = which_column_func(old_client_file_path)
+    return free_column_func(columns)
 
 """Check if new or old client()"""
 def old_or_new_client_func():
@@ -106,9 +114,6 @@ def free_column_func(columns):
         return col_letter_list[0]
     except (Exception,):
         return "Plik jest zapełniony!"
-
-
-
 
         #TODO transfer the free column letter from fee_column_func to excel editor and change columns to write
         #TODO next things to fullfill next columns, check which column is free and use it.

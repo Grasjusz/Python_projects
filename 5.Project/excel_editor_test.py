@@ -10,10 +10,15 @@ from project5 import(
     repair_fast_func,
     repair_long_func,
     comment_func,
+    run,
 )
 
+def test():
+    columns = run()
+    print(columns)
 
 def main_excel():
+    print(columns)
     client = client_name_func()
     client_car = client_car_func()
     all_dates = dates_func()
@@ -23,7 +28,6 @@ def main_excel():
     repair_recommendation = repair_fast_func()
     repair_in_long_time = repair_long_func()
     last_comments = comment_func()
-
 
     # Load the report template
     template = openpyxl.load_workbook(filename="template.xlsx", read_only=False)
@@ -41,7 +45,6 @@ def main_excel():
     for row in rows_date_b:
         f_sheet[row] = all_dates[1]
 
-    print()
     """Inserting car parameters"""
     f_sheet["H7"] = client_car["Marka"]
     f_sheet["H8"] = client_car["Rok"]
@@ -91,13 +94,6 @@ def main_excel():
     # Save document as new file with customer name and car model
     file_name = f"{client}-{client_car['Marka']}-{client_car['Model']}"
     template.save(filename=f"{file_name}.xlsx")
-
-used_letter = list()
-
-def free_column_letter(letter):
-    used_letter = letter
-    print(f"uzywana litera: {used_letter}")
-    return used_letter
 
 if __name__ == "__main_excel__":
     main_excel()
