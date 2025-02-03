@@ -34,7 +34,7 @@ def main():
     elif old_or_new is False:
         """Importing inside function to prevent errors"""
         import excel_editor_test
-        excel_editor_test.test()
+        excel_editor_test.main_excel()
 
                                                         #todo refine working on engine with returning letter..
                                                         #todo ..and working on moving the columns to fill rows

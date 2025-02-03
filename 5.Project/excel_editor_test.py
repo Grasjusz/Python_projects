@@ -13,12 +13,13 @@ from project5 import(
     run,
 )
 
-def test():
+def get_the_column_letter():
     columns = run()
-    print(columns)
+    return columns
 
 def main_excel():
-    print(columns)
+    test = get_the_column_letter()
+    print(f"letter is here: {test}")
     client = client_name_func()
     client_car = client_car_func()
     all_dates = dates_func()
