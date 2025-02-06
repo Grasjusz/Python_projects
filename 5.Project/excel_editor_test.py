@@ -11,15 +11,18 @@ from project5 import(
     repair_long_func,
     comment_func,
     run,
+    getting_old_client_file_func,
 )
 
 def get_the_column_letter():
-    columns = run()
-    return columns
+    elements = run()
+    return elements
 
 def main_excel():
-    test = get_the_column_letter()
-    print(f"letter is here: {test}")
+    elements= get_the_column_letter()
+    path = elements.get("path")
+    letter = elements.get("letter")
+    print(path, letter) #todo <<< use letter to change the column, path to acces to edit file
     client = client_name_func()
     client_car = client_car_func()
     all_dates = dates_func()
@@ -29,6 +32,18 @@ def main_excel():
     repair_recommendation = repair_fast_func()
     repair_in_long_time = repair_long_func()
     last_comments = comment_func()
+
+    """Insert informations to report"""
+def old_client_new_repair_func(client_dir):
+    old_client = load_workbook(client_dir, read_only=False)
+    # Open first sheet
+    f_sheet = old_client.active
+    # Insert data in proper columns/tables
+    f_sheet["H6"] = "Hello test"
+    # Save document as update file
+    old_file_name = f"{client_dir}"
+    old_client.save(filename=f"{old_file_name}")
+
 
     # Load the report template
     template = openpyxl.load_workbook(filename="template.xlsx", read_only=False)
@@ -46,10 +61,11 @@ def main_excel():
     for row in rows_date_b:
         f_sheet[row] = all_dates[1]
 
+
     """Inserting car parameters"""
-    f_sheet["H7"] = client_car["Marka"]
-    f_sheet["H8"] = client_car["Rok"]
-    f_sheet["H9"] = client_car["Model"]
+    f_sheet[f"{proper_column}7"] = client_car["Marka"]
+    f_sheet[f"{proper_column}8"] = client_car["Rok"]
+    f_sheet[f"{proper_column}9"] = client_car["Model"]
     f_sheet["H10"] = client_car["VIN"]
     f_sheet["H11"] = client_car["Numer rejestracji"]
     f_sheet["C15"] = client_car["Przebieg"]

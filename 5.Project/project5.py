@@ -47,7 +47,10 @@ def run():
     old_client_file_path = getting_old_client_file_func()
     old_client_new_repair_func(old_client_file_path)
     columns = which_column_func(old_client_file_path)
-    return free_column_func(columns)
+    elements = {"path":"","letter":""}
+    elements["path"] += old_client_file_path
+    elements["letter"] += free_column_func(columns)
+    return elements
 
 """Check if new or old client()"""
 def old_or_new_client_func():
