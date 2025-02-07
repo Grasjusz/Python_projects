@@ -33,20 +33,8 @@ def main_excel():
     repair_in_long_time = repair_long_func()
     last_comments = comment_func()
 
-    """Insert informations to report"""
-def old_client_new_repair_func(client_dir):
-    old_client = load_workbook(client_dir, read_only=False)
-    # Open first sheet
-    f_sheet = old_client.active
-    # Insert data in proper columns/tables
-    f_sheet["H6"] = "Hello test"
-    # Save document as update file
-    old_file_name = f"{client_dir}"
-    old_client.save(filename=f"{old_file_name}")
-
-
     # Load the report template
-    template = openpyxl.load_workbook(filename="template.xlsx", read_only=False)
+    template = openpyxl.load_workbook(filename=path, read_only=False)
     # Open first sheet
     f_sheet = template.active
     # Insert data in proper columns/tables
@@ -63,9 +51,9 @@ def old_client_new_repair_func(client_dir):
 
 
     """Inserting car parameters"""
-    f_sheet[f"{proper_column}7"] = client_car["Marka"]
-    f_sheet[f"{proper_column}8"] = client_car["Rok"]
-    f_sheet[f"{proper_column}9"] = client_car["Model"]
+    f_sheet[letter+"7"] = client_car["Marka"]
+    f_sheet["c8"] = client_car["Rok"]
+    f_sheet["c9"] = client_car["Model"]
     f_sheet["H10"] = client_car["VIN"]
     f_sheet["H11"] = client_car["Numer rejestracji"]
     f_sheet["C15"] = client_car["Przebieg"]
