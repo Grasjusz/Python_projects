@@ -22,7 +22,7 @@ def main_excel():
     elements= get_the_column_letter()
     path = elements.get("path")
     letter = elements.get("letter")
-    print(path, letter) #todo <<< use letter to change the column, path to acces to edit file
+    print(path, letter) #todo <<< use letter to change the column, path to access to edit file
     client = client_name_func()
     client_car = client_car_func()
     all_dates = dates_func()
@@ -51,7 +51,9 @@ def main_excel():
 
 
     """Inserting car parameters"""
-    f_sheet[letter+"7"] = client_car["Marka"]
+    pos = letter+"7"
+    print(pos)
+    f_sheet["c7"] = client_car["Marka"]
     f_sheet["c8"] = client_car["Rok"]
     f_sheet["c9"] = client_car["Model"]
     f_sheet["H10"] = client_car["VIN"]
