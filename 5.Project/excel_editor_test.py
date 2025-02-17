@@ -53,16 +53,16 @@ def main_excel():
     """Inserting car parameters"""
     pos = letter+"7"
     print(pos)
-    f_sheet["c7"] = client_car["Marka"]
-    f_sheet["c8"] = client_car["Rok"]
-    f_sheet["c9"] = client_car["Model"]
+    f_sheet["h7"] = client_car["Marka"]
+    f_sheet["h8"] = client_car["Rok"]
+    f_sheet["h9"] = client_car["Model"]
     f_sheet["H10"] = client_car["VIN"]
     f_sheet["H11"] = client_car["Numer rejestracji"]
     f_sheet["C15"] = client_car["Przebieg"]
     """Inserting fulfilling the checklist"""
-    f_sheet["C40"] = car_checklist["Zawieszenie"]
-    f_sheet["C41"] = car_checklist["Oświetlenie"]
-    f_sheet["C42"] = car_checklist["Klimatyzacja"]
+    f_sheet[letter+"40"] = car_checklist["Zawieszenie"]
+    f_sheet[letter+"41"] = car_checklist["Oświetlenie"]
+    f_sheet[letter+"42"] = car_checklist["Klimatyzacja"]
     f_sheet["C43"] = car_checklist["Silnik"]
     f_sheet["C44"] = car_checklist["Koła"]
     f_sheet["C45"] = car_checklist["Hamulce"]
