@@ -50,9 +50,7 @@ def main_excel():
         f_sheet[row] = all_dates[1]
 
 
-    """Inserting car parameters"""
-    pos = letter+"7"
-    print(pos)
+    """Inserting client car's parameters as information"""
     f_sheet["h7"] = client_car["Marka"]
     f_sheet["h8"] = client_car["Rok"]
     f_sheet["h9"] = client_car["Model"]
@@ -60,21 +58,21 @@ def main_excel():
     f_sheet["H11"] = client_car["Numer rejestracji"]
     f_sheet["C15"] = client_car["Przebieg"]
     """Inserting fulfilling the checklist"""
-    f_sheet[letter+"40"] = car_checklist["Zawieszenie"]
-    f_sheet[letter+"41"] = car_checklist["Oświetlenie"]
-    f_sheet[letter+"42"] = car_checklist["Klimatyzacja"]
-    f_sheet["C43"] = car_checklist["Silnik"]
-    f_sheet["C44"] = car_checklist["Koła"]
-    f_sheet["C45"] = car_checklist["Hamulce"]
-    f_sheet["C46"] = car_checklist["Nadwozie"]
-    f_sheet["C47"] = car_checklist["Podwozie"]
-    f_sheet["C48"] = car_checklist["Korozja"]
+    f_sheet[f"{letter}40"] = car_checklist["Zawieszenie"]
+    f_sheet[f"{letter}41"] = car_checklist["Oświetlenie"]
+    f_sheet[f"{letter}42"] = car_checklist["Klimatyzacja"]
+    f_sheet[f"{letter}43"] = car_checklist["Silnik"]
+    f_sheet[f"{letter}44"] = car_checklist["Koła"]
+    f_sheet[f"{letter}45"] = car_checklist["Hamulce"]
+    f_sheet[f"{letter}46"] = car_checklist["Nadwozie"]
+    f_sheet[f"{letter}47"] = car_checklist["Podwozie"]
+    f_sheet[f"{letter}48"] = car_checklist["Korozja"]
 
     """Inserting customer todo list, depends of list length"""
     row_cs_todo = 19
     customer_todo_count = 0
     while True:
-        f_sheet[f"C{row_cs_todo}"] = customer_todo[customer_todo_count]
+        f_sheet[f"{letter}{row_cs_todo}"] = customer_todo[customer_todo_count]
         row_cs_todo += 1
         customer_todo_count += 1
         if customer_todo_count == len(customer_todo):
@@ -85,18 +83,18 @@ def main_excel():
         row_repaired = 51
         for key, value in repaired.items():
             f_sheet[f"B{row_repaired}"] = key
-            f_sheet[f"C{row_repaired}"] = value
+            f_sheet[f"{letter}{row_repaired}"] = value
             row_repaired += 1
         break
 
     """Repair recommendation"""
     # Things to repair as fast as possible
-    f_sheet["C66"] = repair_recommendation
+    f_sheet[f"{letter}66"] = repair_recommendation
     # Things good to repair before next audit
-    f_sheet["C70"] = repair_in_long_time
+    f_sheet[f"{letter}70"] = repair_in_long_time
 
     """Comments, informations etc. section"""
-    f_sheet["C74"] = last_comments
+    f_sheet[f"{letter}74"] = last_comments
 
     # Save document as new file with customer name and car model
     file_name = f"{client}-{client_car['Marka']}-{client_car['Model']}"
