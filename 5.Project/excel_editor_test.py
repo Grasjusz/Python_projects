@@ -11,7 +11,6 @@ from project5 import(
     repair_long_func,
     comment_func,
     run,
-    getting_old_client_file_func,
 )
 
 def get_the_column_letter():
@@ -23,8 +22,8 @@ def main_excel():
     path = elements.get("path")
     letter = elements.get("letter")
     print(path, letter) #todo <<< use letter to change the column, path to access to edit file
-    client = client_name_func()
-    client_car = client_car_func()
+    #client = client_name_func()
+    #client_car = client_car_func()
     all_dates = dates_func()
     car_checklist = checklist_func()
     customer_todo = todo_func()
@@ -34,13 +33,14 @@ def main_excel():
     last_comments = comment_func()
 
     # Load the report template
+    """Insert informations to report"""
     template = openpyxl.load_workbook(filename=path, read_only=False)
     # Open first sheet
     f_sheet = template.active
     # Insert data in proper columns/tables
-    """Inserting clients name"""
-    client = " ".join(client)
-    f_sheet["H6"] = client
+    #"""Inserting clients name"""
+    #client = " ".join(client)
+    #f_sheet["H6"] = client
     """Inserting dates in columns"""
     rows_date_a = ["H4", "C19"]
     for row in rows_date_a:
@@ -96,9 +96,12 @@ def main_excel():
     """Comments, informations etc. section"""
     f_sheet[f"{letter}74"] = last_comments
 
+
+"""
     # Save document as new file with customer name and car model
     file_name = f"{client}-{client_car['Marka']}-{client_car['Model']}"
     template.save(filename=f"{file_name}.xlsx")
+"""
 
 if __name__ == "__main_excel__":
     main_excel()
