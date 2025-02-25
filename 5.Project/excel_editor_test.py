@@ -18,7 +18,7 @@ def get_the_column_letter():
     return elements
 
 def main_excel():
-    elements= get_the_column_letter()
+    elements = get_the_column_letter()
     path = elements.get("path")
     letter = elements.get("letter")
     print(path, letter) #todo <<< use letter to change the column, path to access to edit file
@@ -34,9 +34,10 @@ def main_excel():
 
     # Load the report template
     """Insert informations to report"""
-    template = openpyxl.load_workbook(filename=path, read_only=False)
+    old_client = openpyxl.load_workbook(path, read_only=False)
     # Open first sheet
-    f_sheet = template.active
+    f_sheet = old_client.active
+
     # Insert data in proper columns/tables
     #"""Inserting clients name"""
     #client = " ".join(client)
@@ -51,12 +52,13 @@ def main_excel():
 
 
     """Inserting client car's parameters as information"""
-    f_sheet["h7"] = client_car["Marka"]
+    """f_sheet["h7"] = client_car["Marka"]
     f_sheet["h8"] = client_car["Rok"]
     f_sheet["h9"] = client_car["Model"]
     f_sheet["H10"] = client_car["VIN"]
     f_sheet["H11"] = client_car["Numer rejestracji"]
-    f_sheet["C15"] = client_car["Przebieg"]
+    f_sheet["C15"] = client_car["Przebieg"]"""
+
     """Inserting fulfilling the checklist"""
     f_sheet[f"{letter}40"] = car_checklist["Zawieszenie"]
     f_sheet[f"{letter}41"] = car_checklist["Oświetlenie"]
@@ -97,11 +99,9 @@ def main_excel():
     f_sheet[f"{letter}74"] = last_comments
 
 
-"""
-    # Save document as new file with customer name and car model
-    file_name = f"{client}-{client_car['Marka']}-{client_car['Model']}"
-    template.save(filename=f"{file_name}.xlsx")
-"""
+    # Save document as update file
+    old_file_name = f"{path}"
+    old_client.save(filename=f"{old_file_name}")
 
 if __name__ == "__main_excel__":
     main_excel()

@@ -84,8 +84,6 @@ def old_client_new_repair_func(client_dir):
     old_client = load_workbook(client_dir, read_only=False)
     # Open first sheet
     f_sheet = old_client.active
-    # Insert data in proper columns/tables
-    f_sheet["H6"] = "Hello test"
     # Save document as update file
     old_file_name = f"{client_dir}"
     old_client.save(filename=f"{old_file_name}")
