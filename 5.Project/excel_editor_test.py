@@ -22,8 +22,7 @@ def main_excel():
     path = elements.get("path")
     letter = elements.get("letter")
     print(path, letter) #todo <<< use letter to change the column, path to access to edit file
-    #client = client_name_func()
-    #client_car = client_car_func()
+    client_car = client_car_func()
     all_dates = dates_func()
     car_checklist = checklist_func()
     customer_todo = todo_func()
@@ -38,26 +37,18 @@ def main_excel():
     # Open first sheet
     f_sheet = old_client.active
 
-    # Insert data in proper columns/tables
-    #"""Inserting clients name"""
-    #client = " ".join(client)
-    #f_sheet["H6"] = client
+
     """Inserting dates in columns"""
-    rows_date_a = ["H4", "C19"]
+    rows_date_a = ["H4"]
     for row in rows_date_a:
         f_sheet[row] = all_dates[0]
-    rows_date_b = ["H5", "D14", "C14"]
+    rows_date_b = [f"{letter}14", "H5"]
     for row in rows_date_b:
         f_sheet[row] = all_dates[1]
 
 
     """Inserting client car's parameters as information"""
-    """f_sheet["h7"] = client_car["Marka"]
-    f_sheet["h8"] = client_car["Rok"]
-    f_sheet["h9"] = client_car["Model"]
-    f_sheet["H10"] = client_car["VIN"]
-    f_sheet["H11"] = client_car["Numer rejestracji"]
-    f_sheet["C15"] = client_car["Przebieg"]"""
+    f_sheet[f"{letter}15"] = client_car["Przebieg"]
 
     """Inserting fulfilling the checklist"""
     f_sheet[f"{letter}40"] = car_checklist["Zawieszenie"]
