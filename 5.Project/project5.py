@@ -1,9 +1,10 @@
 """Importing"""
 import datetime
-import openpyxl
 import glob
+
 from openpyxl import load_workbook
-import excel_editor
+
+import excel_editor_new_client
 
 
 class Client:
@@ -30,17 +31,12 @@ def main():
     """Check if new or old client and handle it."""
     old_or_new = old_or_new_client_func()
     if old_or_new is True:
-        excel_editor.main_excel()
+        excel_editor_new_client.main_excel()
     elif old_or_new is False:
         """Importing inside function to prevent errors"""
         import excel_editor_test
         excel_editor_test.main_excel()
 
-                                                        #todo refine working on engine with returning letter..
-                                                        #todo ..and working on moving the columns to fill rows
-                                                        #todo in excel_editor_test
-                                                        #todo split generating file search / returning letter
-                                                        #todo ..in another funcs
 
 """Function to aggregate all funcs to return free column letter"""
 def run():
