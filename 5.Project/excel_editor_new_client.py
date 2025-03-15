@@ -93,7 +93,7 @@ def main_excel():
 
     # Save document as new file with customer name and car model
     file_name = f"{client}-{client_car['Marka']}-{client_car['Model']}"
-    template.save(filename=f"{file_name}.xlsx")
+    template.save(f"./Klienci/{file_name}.xlsx")
 
 if __name__ == "__main_excel__":
     main_excel()

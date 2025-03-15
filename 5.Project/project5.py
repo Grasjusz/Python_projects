@@ -34,8 +34,8 @@ def main():
         excel_editor_new_client.main_excel()
     elif old_or_new is False:
         """Importing inside function to prevent errors"""
-        import excel_editor_test
-        excel_editor_test.main_excel()
+        import excel_editor_old_client
+        excel_editor_old_client.main_excel()
 
 
 """Function to aggregate all funcs to return free column letter"""
